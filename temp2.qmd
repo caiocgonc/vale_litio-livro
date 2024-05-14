@@ -1,0 +1,437 @@
+---
+title: "Migração com CadÚnico"
+authors: 
+- Helena Soares
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE,warning=FALSE, message=FALSE)
+Sys.setlocale("LC_ALL", "en_US.UTF-8")
+
+```
+
+```{css}
+#| echo: false
+p {
+  text-align: justify
+}
+```
+
+\[Em edição\]
+
+# O que os dados do CadÚnico podem revelar sobre a população em idade ativa e migração? {#sec-cad-unico}
+
+O Censo Demográfico 2022 é a principal referência para análise do perfil da população e tendências demográficas. A base anual de dados do Cadastro Único do Governo Federal (CadÚnico) abriga a parte da população em situação de vulnerabilidade financeira, sendo referência para os programas sociais. A população cadastrada tem a obrigatoriedade de realizar a atualização dos dados a cada dois anos contados da data de inscrição ou última atualização.  Essa base administrativa é submetida a processos de validação por meio da integração com o Cadastro Nacional de Informações Sociais (CNIS) e outras bases oficiais, qualificando o registro das informações.
+
+Com base em 2022 como ano de referência 2022 para ambas as bases, apurou o percentual do segmento populacional da faixa etária de 14 a 64 anos, ou seja, em idade ativa para o trabalho cadastrada no CadÚnico em relação ao mesmo segmento etário na população dos municípios do Vale do Lítio do Censo Demográfico 2022 . No município de Teófilo Otoni, 44,61% de sua população entre 14 e 64 anos encontra-se cadastrada no CadÚnico, seguido de Malacacheta com 53,82%. Os municípios de Coronel Murta e Rubelita possuem o maior percentual da população desse grupo etário inscrito no CadÚnico, com mais de 80% da população em idade ativa para o trabalho cadastrada no Cadastro Único, ou seja, em situação de pobreza monetária.
+
+```{r,  echo=FALSE, warning=FALSE, message=FALSE}
+library(ggplot2)
+library(gt)
+# Criar os vetores com os dados
+cidades <- c("Araçuaí", "Capelinha", "Coronel Murta", "Itaobim", "Itinga", "Malacacheta", "Medina", "Minas Novas", "Pedra Azul", "Rubelita", "Salinas", "Teófilo Otoni", "Turmalina", "Virgem da Lapa")
+censo_2022 <- c(34297, 39626, 8200, 19151, 13745, 17516, 20156, 24405, 24410, 5679, 40178, 137418, 20000, 11804)
+percent_pop <- c(68.1, 66.6, 82.3, 61.7, 73.1, 52.7, 67.9, 67.7, 68.9, 78.4, 64.7, 46.9, 63.1, 79.1)
+ibge <- c(3103405, 3112307, 3119500, 3133303, 3134004, 3139201, 3141405, 3141801, 3148707, 3156502, 3157005, 3168606, NA, 3171600)
+
+# Criar o dataframe
+df <- data.frame(CENSO_2022 = censo_2022, `%_POP_Cad_x_municipio_Censo_2022` = percent_pop, Município = cidades, IBGE = ibge)
+
+```
+
+```{r}
+library(ggplot2)
+library(viridis)
+
+# Ordenar os dados pela variável de interesse para assegurar a ordem decrescente
+df <- df[order(-df$X._POP_Cad_x_municipio_Censo_2022), ]
+
+# Atribuir cores usando a paleta viridis
+df$Município <- factor(df$Município, levels = unique(df$Município))
+
+# Criar o gráfico de barras horizontal com as barras e as cores ordenadas de forma decrescente
+ggplot(df, aes(x = X._POP_Cad_x_municipio_Censo_2022, y = Município, fill = Município)) +
+  geom_col(show.legend = FALSE) +  # Remover a legenda
+  geom_text(aes(label = paste0(X._POP_Cad_x_municipio_Censo_2022, '%')), 
+            position = position_stack(vjust = 0.5), 
+            size = 3.5, 
+            color = "white")+#exto em amarelo para contraste
+  scale_fill_viridis_d() +  # Usar a paleta de cores viridis
+  labs(title = " % da população do Cadastro Único em idade ativa em relação à população do município em idade ativa no Censo Demográfico 2022",
+       subtitle = "Municípios do Vale do Lítio - 2022",
+       x = "População",
+       y = "Município") +
+  theme_minimal() +
+  theme(axis.text.y = element_text(hjust = 1),
+        plot.title = element_text(hjust = 0.5, size = 13),
+        plot.subtitle = element_text(hjust = 0.5, size = 11),
+        axis.title = element_text(size =15))+
+  guides(fill = FALSE)  # Remover a legenda de cores
+
+
+
+```
+
+O CadÚnico é uma ferramenta que direciona o planejamento de políticas públicas baseando-se em informações sociais, demográficas e residenciais de uma parte significativa da população brasileira, sob uma perspectiva longitudinal.Conforme a legislação brasileira em vigor, este estudo considerou a população em idade ativa como sendo o segmento com idade compreendida entre 14 e 64 anos dos municípios do Vale do Lítio no período entre 2012 a 2022, cadastrada no CadÚnico.
+
+### Taxa de Analfabetismo
+
+Para o cálculo da taxa de analfabetismo da população inscrita no CadÚnico em idade ativa para o trabalho, considerou-se a faixa etária entre 15 e 64 anos. Observa-se que Pedra Azul e Malacacheta acumulam o maior percentual de pessoas em idade para o trabalho na situação de analfabetismo em 2022, sendo 14,37% e 12,85%, respectivamente. Os municípios de Turmalina se posicionam no outro extremo, com as menores taxas de analfabetismo, sendo 5,33% e 5,64%, respectivamente. A diferença entre as taxas nos dois extremos do período analisado indica a mudança líquida ocorrida. Deste modo, observa-se que somente Araçuaí apresentou redução da taxa de analfabetismo em 0.41 pontos percentuais. Minas Novas foi o munícipio com maior piora no indicador com 7.63 pontos negativos de diferença entre 2012-2022.
+
+```{r warning=FALSE}
+# Importando os dados
+df_analfabetismo <- data.frame(
+  IBGE = c(3103405, 3112307, 3119500, 3133303, 3134004, 3139201, 3141405, 3141801, 3148707, 3156502, 3157005, 3168606, 3169703, 3171600),
+  MUNICIPIO = c("Araçuaí", "Capelinha", "Coronel Murta", "Itaobim", "Itinga", "Malacacheta", "Medina", "Minas Novas", "Pedra Azul", "Rubelita", "Salinas", "Teófilo Otoni", "Turmalina", "Virgem da Lapa"),
+# `2012` = c(5.57, 12.14, 9.61, 11.81, 10.73, 15.83, 9.56, 18.66, 13.14, 15.16, 7.10, 10.84, 5.70, 9.30),
+# `2013` = c(5.44, 11.64, 10.10, 11.79, 10.33, 15.85, 9.11, 19.47, 12.69, 14.50, 7.15, 10.48, 5.19, 8.60),
+# `2014` = c(14.44, 20.74, 17.91, 20.77, 19.22, 22.02, 15.93, 27.10, 20.25, 21.30, 15.48, 16.13, 10.97, 15.88),
+  `2015` = c(4.93, 10.89, 10.35, 10.93, 9.46, 16.18, 7.76, 19.03, 11.71, 11.87, 6.92, 8.57, 3.62, 8.10),
+  `2016` = c(4.70, 10.35, 9.58, 10.35, 8.79, 15.79, 7.17, 20.17, 11.38, 10.54, 6.92, 7.96, 3.03, 7.39),
+  `2017` = c(4.53, 10.42, 9.53, 10.12, 8.22, 15.91, 6.76, 19.62, 11.51, 10.84, 7.72, 7.99, 3.34, 6.88),
+  `2018` = c(4.48, 10.35, 9.77, 10.56, 8.44, 16.09, 6.90, 17.31, 11.95, 10.33, 7.80, 8.47, 4.09, 6.38),
+  `2019` = c(4.83, 9.99, 9.55, 10.65, 8.81, 16.20, 7.36, 16.13, 12.37, 10.04, 7.32, 8.71, 4.78, 5.93),
+  `2020` = c(5.49, 9.33, 8.94, 10.87, 9.16, 15.50, 7.52, 15.33, 12.66, 10.10, 6.92, 8.70, 5.56, 5.97),
+  `2021` = c(5.72, 8.52, 8.54, 10.78, 9.76, 14.77, 7.67, 13.08, 13.09, 10.17, 6.36, 8.06, 5.61, 5.66),
+  `2022` = c(5.98, 7.88, 8.29, 11.29, 10.16, 14.37, 7.71, 11.03, 12.85, 11.24, 5.64, 7.18, 5.33, 6.13)
+)
+
+
+
+```
+
+```{r}
+# Carregando os pacotes necessários
+library(ggplot2)
+library(reshape2)
+library(RColorBrewer)
+
+
+# Transformando o dataframe para o formato longo
+df_long <- melt(df_analfabetismo, id.vars = c("IBGE", "MUNICIPIO"), variable.name = "Ano", value.name = "TaxaAnalfabetismo")
+
+# Ajustando os nomes dos anos 
+df_long$Ano <- gsub("X", "", df_long$Ano)
+
+# Escolhendo uma paleta de cores
+color_palette <- rev(brewer.pal(name = "Spectral", n = 9))
+
+# Criando o mapa de calor
+ggplot(df_long, aes(x = Ano, y = MUNICIPIO, fill = TaxaAnalfabetismo)) +
+  geom_tile(color = "white") +
+  geom_text(aes(label = round(TaxaAnalfabetismo, 2)), vjust = 1, size = 3) +
+  scale_fill_gradientn(colors = color_palette) +
+  theme_minimal() +
+  labs(title = "Taxa de Analfabetismo da população em idade ativa cadastrada no CadÚnico.\nMunicípios do Vale do Lítio. Período: 2012-2022.",
+       subtitle = "Municípios do Vale do Lítio - 2015-2022",
+       x = "Ano", y = "Município", fill = "Taxa de Analfabetismo (%)") +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 1, size = 12, face = "bold", margin = margin(b = 0))) # Ajusta a posição horizontal do título
+
+```
+
+Fonte: Base Identificada do Cadastro Único do Governo Federal.
+
+Para o cálculo da taxa de analfabetismo da população inscrita no CadÚnico em idade ativa para o trabalho, considerou-se a faixa etária entre 15 e 64 anos. Observa-se que Pedra Azul e Malacacheta acumulam o maior percentual de pessoas em idade para o trabalho na situação de analfabetismo em 2022, sendo 14,37% e 12,85%, respectivamente. Os municípios de Turmalina se posicionam no outro extremo, com as menores taxas de analfabetismo, sendo 5,33% e 5,64%, respectivamente. A diferença entre as taxas nos dois extremos do período analisado indica a mudança líquida ocorrida. Deste modo, observa-se que somente Araçuaí apresentou redução da taxa de analfabetismo em 0.41 pontos percentuais. Minas Novas foi o munícipio com maior piora no indicador com 7.63 pontos negativos de diferença entre 2012-2022.
+
+### Taxa de Escolarização
+
+A taxa de escolarização representa o percentual de indivíduos com idade acima de 25 anos que concluiu a educação básica, ou seja, o ensino médio. Assim, tem-se a média geral de estudo do grupo em foco. No grupo analisado, a média geral do período é de 27%, sendo que Coronel Murta apresenta a melhor média no período (43,18%) e Minas Novas, a menor média (20,01%), da população em idade ativa em situação de vulnerabilidade. Os dados mostram que a taxa de escolarização vem crescendo entre os anos de 2012 e 2022. No último ano, Turmalina se destaca com 42,14% do segmento populacional com idade acima de 25 que possui o ensino médio completo, seguido por Teófilo Otoni e Turmalina.
+
+```{r}
+# Criando o dataframe
+tx_escolaricao <- data.frame(
+  IBGE = c(3103405, 3112307, 3119500, 3133303, 3134004, 3139201, 3141405, 3141801, 3148707, 3156502, 3157005, 3168606, 3169703, 3171600),
+  MUNICIPIO = c("Araçuaí", "Capelinha", "Coronel Murta", "Itaobim", "Itinga", "Malacacheta", "Medina", "Minas Novas", "Pedra Azul", "Rubelita", "Salinas", "Teófilo Otoni", "Turmalina", "Virgem da Lapa"),
+  `2012` = c(19.82, 15.42, 20.63, 15.29, 14.75, 11.53, 14.87, 9.54, 21.60, 13.85, 16.20, 16.77, 16.37, 24.64),
+  `2013` = c(21.24, 17.51, 25.44, 16.79, 15.97, 14.98, 17.13, 10.32, 22.37, 16.15, 18.99, 18.68, 19.32, 25.64),
+  `2014` = c(23.51, 19.84, 27.61, 18.52, 17.54, 16.80, 18.60, 12.20, 23.14, 18.33, 21.22, 20.48, 22.90, 28.24),
+  `2015` = c(26.35, 22.24, 30.85, 22.94, 20.59, 20.48, 21.88, 13.65, 25.90, 22.19, 23.97, 25.45, 28.28, 30.02),
+  `2016` = c(28.46, 24.22, 35.04, 24.01, 23.08, 21.90, 23.31, 14.30, 28.37, 25.38, 25.84, 27.54, 31.32, 32.70),
+  `2017` = c(29.98, 24.53, 37.87, 25.66, 26.53, 21.57, 23.92, 19.06, 30.74, 26.76, 28.72, 28.10, 33.66, 36.72),
+  `2018` = c(32.46, 26.39, 38.89, 27.46, 29.14, 23.70, 27.31, 25.05, 34.04, 29.91, 31.51, 30.04, 36.21, 38.37),
+  `2019` = c(34.58, 29.09, 39.93, 28.38, 29.05, 24.87, 28.43, 26.75, 35.70, 34.43, 33.85, 34.45, 39.45, 39.11),
+  `2020` = c(35.19, 30.40, 39.45, 29.43, 28.15, 24.17, 28.71, 27.18, 34.81, 35.33, 34.53, 34.73, 39.38, 38.32),
+  `2021` = c(36.02, 32.51, 39.26, 30.87, 29.80, 25.37, 30.40, 29.44, 36.74, 35.84, 37.32, 38.10, 39.87, 40.23),
+  `2022` = c(37.26, 35.65, 41.05, 34.32, 30.97, 26.23, 32.54, 32.58, 39.26, 36.02, 39.42, 41.30, 42.14, 40.53)
+)
+
+```
+
+```{r}
+# Carregando os pacotes necessários
+library(ggplot2)
+library(reshape2)
+library(RColorBrewer)
+
+# Transformando o dataframe para o formato longo
+df_long <- melt(tx_escolaricao, id.vars = c("IBGE", "MUNICIPIO"), variable.name = "Ano", value.name = "TaxaEscolarizacao")
+
+# Ajustando os nomes dos anos 
+df_long$Ano <- gsub("X", "", df_long$Ano)
+
+# Definindo as cores manualmente
+custom_colors <- c("#b6186b", "#50c878", "#4d5816", "#8b0000", "#c0c0c0", "#084d8c", "#e07a10", "#5d360e", "#296111", "#d51919", "#33cccc", "#2676ff", "#FF69B4", "#8A2BE2")
+
+
+# Criando o gráfico de linhas
+ggplot(df_long, aes(x = Ano, y = TaxaEscolarizacao, group = MUNICIPIO, color = MUNICIPIO)) +
+  geom_line() +
+  scale_color_manual(values = custom_colors) +
+  theme_minimal() +
+  labs(title = "Taxa de Escolarização da população em idade ativa para o trabalho (14 a 64 anos)\ninscrita no Cadastro Único (%)",
+       subtitle = "Municípios do Vale do Lítio - 2012-2022", 
+       x = "Ano", y = "Taxa de Escolarização (%)", color = "Município")+
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0, size = 16, face = "bold"))+
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 1, size = 12, face = "bold", margin = margin(b = 0))) # Ajusta a posição horizontal do título
+
+
+```
+
+Fonte: Base Identificada do Cadastro Único do Governo Federal
+
+A taxa de escolarização representa o percentual de indivíduos com idade acima de 25 anos que concluiu a educação básica, ou seja, o ensino médio completo. Coronel Murta apresenta a melhor taxa de escolarização no período (43,18%) e Minas Novas, a menor média (20,01%), da população em idade ativa em situação de vulnerabilidade. Os dados mostram que a taxa de escolarização vem crescendo entre os anos de 2012 e 2022. No último ano, Turmalina se destaca com 42,14% do segmento populacional com idade acima de 25 que possui o ensino médio completo, seguido por Teófilo Otoni e Turmalina, com 41,3% e 42,14%, respectivamente. Todos os municípios apresentaram melhoria na taxa de escolarização nesse período, sendo que Teófilo Otoni obteve a diferença de 24.53 pontos percentuais e Salinas com 23,22 pontos.
+
+### Vínculo de trabalho
+
+Os dados referentes à condição de vínculo empregatício referem-se à população inscrita no CadÚnico, que declarou ter trabalhado na semana anterior à inscrição ou atualização, no ano de referência, com fechamento da base em dezembro do mesmo ano. Observa-se a predominância de trabalho na condição de autônomo ou sem vínculo contratual em todos os municípios e durante todo o período apurado. Nota-se também uma tendência de aumento no percentual de pessoas que prestaram algum serviço na condição de aprendiz, estagiário ou sem remuneração. Nos últimos quatro anos analisados (2018-2021), os municípios de Rubelita, Pedra Azul e Malacacheta apresentam maior percentual de pessoas que trabalharam sem qualquer tipo de vínculo empregatício no período analisado, sendo aqueles que fazem bico, temporário na área rural ou sem carteira de trabalho assinada, incluindo as domésticas. Araçuaí, Capelinha, Itaobim e Teófilo Otoni são os municípios com maior percentual de trabalhadores ~~sem~~ com contrato de trabalho. Coronel Murta e Virgem da Lapa possuem o maior percentual de indivíduos no serviço militar ou como empregadores, inscritos no CadÚnico nos últimos quatro anos. Entre 2012 e 2016, Itinga foi o município com maior percentual de indivíduos na condição de aprendiz, estagiário ou que trabalharam sem remuneração, e Medina nos cinco últimos anos analisados~~.~~.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Carregando o pacote ggplot2
+library(tidyverse)
+library(readxl)
+pop_idade_ativa <- read_excel("pop_idade_ativa.xlsx")
+
+pop_idade_ativa_long <- pop_idade_ativa %>%
+  gather(key = "Tipo_Trabalho", value = "Percentual", sem_contrato, com_contrato, militar_ou_empregador, sem_remuneração)
+
+colnames(pop_idade_ativa_long)[2] <- "Município"
+
+# Criando o painel de gráficos
+ggplot(pop_idade_ativa_long, aes(x = ano, y = Percentual, group = Município, colour = Município)) +
+  geom_line() +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "Situação de vínculo de trabalho da população entre 14 e 64 anos \nque trabalhou, cadastrada no CadÚnico",
+       subtitle = "Municípios do Vale do Lítio - 2012-2022",
+       y = "%", x = "Ano") +
+  facet_wrap(~Tipo_Trabalho, scales = "free_y") +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0, size = 12, face = "bold"))+
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 1, size = 12, face = "bold", margin = margin(b = 0))) # Ajusta a posição horizontal do título
+
+```
+
+Fonte: Base Identificada do Cadastro Único do Governo Federal
+
+Os dados referentes à condição de vínculo empregatício referem-se à população inscrita no CadÚnico, que declarou ter trabalhado na semana anterior à inscrição ou atualização, no ano de referência, com fechamento da base em dezembro do mesmo ano. Observa-se a predominância de trabalho na condição de autônomo ou sem vínculo contratual em todos os municípios e durante todo o período apurado. Nota-se também uma tendência de aumento no percentual de pessoas que prestaram algum serviço na condição de aprendiz, estagiário ou sem remuneração. Nos últimos quatro anos analisados (2018-2021), os municípios de Rubelita, Pedra Azul e Malacacheta apresentam maior percentual de pessoas que trabalharam sem qualquer tipo de vínculo empregatício no período analisado, sendo aqueles que fazem bico, temporário na área rural ou sem carteira de trabalho assinada, incluindo as domésticas. Araçuaí, Capelinha, Itaobim e Teófilo Otoni são os municípios com maior percentual de trabalhadores com contrato de trabalho. Coronel Murta e Virgem da Lapa possuem o maior percentual de indivíduos no serviço militar ou como empregadores, inscritos no CadÚnico nos últimos quatro anos. Entre 2012 e 2016~~8~~, Itinga foi o município com maior percentual de indivíduos na condição de aprendiz, estagiário ou que trabalharam sem remuneração, e Medina nos ~~três~~ cinco últimos anos analisados.
+
+### Sexo
+
+Observa-se, de modo geral, que a população feminina apresenta maior representatividade em relação à população masculina, na faixa etária de 14 a 64 anos, na base do Cadastro Único. A política socioassistencial que recomenda que as inscrições sejam feitas preferencialmente por mulheres é a principal razão para este quadro. A média geral é de 45% para homens e 55% para mulheres inscritas, ao longo de todo o período, nos municípios do Vale do Lítio.
+
+```{r}
+library(readxl)
+prop_mac_fem <- read_excel("prop_mac_fem.xlsx")
+
+# Calcular a população total
+df <- prop_mac_fem %>%
+  mutate(pop_total = masc + fem) %>% filter(ano==2022)
+
+# Calcular a proporção da população por gênero
+df <- df %>%
+  mutate(prop_masc = masc / pop_total,
+         prop_fem = fem / pop_total)
+
+# Reorganizar os dados no formato longo
+df_long <- df %>%
+  select(MUNICIPIO, prop_masc, prop_fem) %>%
+  pivot_longer(cols = c(prop_masc, prop_fem),
+               names_to = "Genero",
+               values_to = "Proporcao")
+
+# Criar o gráfico de barras empilhadas
+ggplot(df_long, aes(x = MUNICIPIO, y = Proporcao, fill = Genero)) +
+  geom_bar(stat = "identity", position = "stack") +
+  geom_text(aes(label = scales::percent(Proporcao, accuracy = 0.01)), position = position_stack(vjust = 0.5), color = "white", size = 3) + 
+  coord_flip() +  # Virar o gráfico para melhor visualização
+  theme_minimal() +
+  scale_fill_brewer(palette = "Dark2") +  # Escolha uma paleta da RColorBrewer
+  labs(title = "Proporção da população por sexo",
+       subtitle = "Municípios do Vale do Lítio - 2022",
+       x = "Município",
+       y = "Proporção (%)",
+       fill = "") +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0, size = 12, face = "bold"))
+
+```
+
+### Saldo Migratorio Anual e Taxa Líquida de Migração
+
+Com base nos dados do Cadastro Único, fo~~r~~am apurados o saldo migratório e a taxa líquida de migração do período entre 2012 e 2022 dos municípios do Projeto Lítio. A definição de migrante baseou-se no município de última residência no ano anterior, constituindo, assim, uma análise por período. O saldo migratório refere-se à diferença entre o número de pessoas que entraram no município e o número de pessoas que saíram~~,~~. A taxa líquida de migração indica a proporção do saldo em relação à população com idade entre 14 e 64 anos, no final do período considerado, já ajustada pelas saídas no intervalo (mortalidade, remoção da base de dados e mudança para outro estado ou país). Nos municípios do Vale do Lítio, prevalece um saldo migratório negativo ou próximo de zero, indicando a falta de retenção da população em idade ativa para o trabalho que se encontra em situação de vulnerabilidade financeira.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Carregando os pacotes necessários
+library(ggplot2)
+library(dplyr)
+library(readxl)
+saldo_migratorio <- read_excel("saldo_migratorio.xlsx", 
+    sheet = "Planilha2")
+
+# Configuração de cores personalizadas para positivo e negativo
+custom_colors_pos_neg <- c("positivo" = "#538017", "negativo" = "#802f17")
+
+# Adicionando uma nova coluna para indicar se o saldo migratório é positivo ou negativo
+saldo_migratorio <- saldo_migratorio %>%
+  mutate(SaldoTipo = ifelse(SM >= 0, "positivo", "negativo"))
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Carregando os pacotes necessários
+library(ggplot2)
+
+# Configuração de cores personalizadas
+custom_colors <- c("#b6186b", "#50c878", "#4d5816", "#8b0000", "#c0c0c0", 
+                   "#084d8c", "#e07a10", "#5d360e", "#296111", "#d51919", 
+                   "#33cccc", "#2676ff", "#FF69B4", "#8A2BE2")
+
+# Definindo os anos manualmente para o eixo x
+anos <- c(2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022)
+
+# Criando o gráfico de linhas para a taxa líquida de migração com melhor distinção
+ ggplot(saldo_migratorio, aes(x = ano, y = SM, group = Município, colour = Município)) +
+  geom_line(linewidth = 0.9) +  # Aumentando a espessura das linhas
+  geom_point(linewidth = 3, shape = 21) +  # Adicionando marcadores com bordas
+  scale_color_manual(values = custom_colors) +  # Utilizando cores personalizadas
+  scale_x_continuous(breaks = anos) +  # Definindo os anos manualmente
+  theme_minimal() +
+  labs(title = "Saldo de Migração por Município e Ano",
+       y = "Saldo de Migração",
+       x = "Ano") +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme(legend.position = "bottom",
+        plot.title = element_text(hjust = 0, size = 10, face = "bold"))
+
+
+
+```
+
+Fonte: Base Identificada do Cadastro Único do Governo Federal
+
+A migração constitui um componente imediato de resposta a condicionantes ou choques na população. Conforme os dados observados, essa resposta não se verificou nos municípios, mantendo-se a tendência à evasão. Rubelita, Salinas e Turmalina apresentaram taxa líquida de migração positiva entre 2021 e 2022, porém com saldo líquido pouco expressivo em relação ao grupo populacional analisado. Capelinha vem mantendo uma taxa líquida de migração positiva, embora com saldo migratório também pouco expressivo. Pedra Azul exibiu sinais de reversão do cenário negativo de contribuição no crescimento populacional por migração, mas somente entre 2021 e 2022. Teófilo Otoni, que é o maior município em termos populacionais do grupo do Vale do Lítio, apresentou taxas de migração oscilantes no período, revelando uma baixa capacidade de retenção e caracterizando-se como um município de passagem.
+
+```{r, warning=FALSE}
+# Carregando os pacotes necessários
+library(ggplot2)
+
+# Configuração de cores personalizadas
+custom_colors <- c("#b6186b", "#50c878", "#4d5816", "#8b0000", "#c0c0c0", 
+                   "#084d8c", "#e07a10", "#5d360e", "#296111", "#d51919", 
+                   "#33cccc", "#2676ff", "#FF69B4", "#8A2BE2")
+
+# Definindo os anos manualmente para o eixo x
+anos <- c(2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022)
+
+# Criando o gráfico de linhas para a taxa líquida de migração com melhor distinção
+ggplot(saldo_migratorio, aes(x = ano, y = TLM, group = Município, colour = Município)) +
+  geom_line(size = 0.9) +  # Aumentando a espessura das linhas
+  geom_point(size = 3, shape = 21) +  # Adicionando marcadores com bordas
+  scale_color_manual(values = custom_colors) +  # Utilizando cores personalizadas
+  scale_x_continuous(breaks = anos) +  # Definindo os anos manualmente
+  theme_minimal() +
+  labs(title = "Taxa Líquida de Migração Anual",
+       subtitle = "Municípios do Vale do Lítio - 2012-2022",
+       y = "Taxa Líquida de Migração",
+       x = "Ano") +
+  theme(legend.position = "bottom",
+        axis.text.x = element_text(angle = 45, hjust = 1)) 
+
+
+```
+
+Fonte: Base Identificada do Cadastro Único do Governo Federal
+
+Com base nos dados do Cadastro Único, foram apurados o saldo migratório e a taxa líquida de migração do período entre 2012 e 2022 dos municípios do Projeto Lítio. A definição de migrante baseou-se no município de última residência no ano anterior, constituindo, assim, uma análise por período. O saldo migratório refere-se à diferença entre o número de pessoas que entraram no município e o número de pessoas que saíram. A taxa líquida de migração indica a proporção do saldo em relação à população com idade entre 14 e 64 anos, no final do período considerado, já ajustada pelas saídas no intervalo (mortalidade, remoção da base de dados e mudança para outro estado ou país). Nos municípios do Vale do Lítio, prevalece um saldo migratório negativo ou próximo de zero, indicando a falta de retenção da população em idade ativa para o trabalho que se encontra em situação de vulnerabilidade financeira.
+
+```{r}
+
+## razao de dependecia
+# Criar o dataframe com os dados fornecidos
+razao_dep <- data.frame(
+  Código = c(3103405, 3112307, 3119500, 3133303, 3134004, 3139201, 3141405, 3141801, 3148707, 3156502, 3157005, 3168606, 3169703, 3171600, 31, 31), 
+  Municipio = c("Araçuaí", "Capelinha", "Coronel Murta", "Itaobim", "Itinga", "Malacacheta", "Medina", "Minas Novas", "Pedra Azul", "Rubelita", "Salinas", "Teófilo Otoni", "Turmalina", "Virgem da Lapa", "Vale do Lítio", "Minas Gerais"),
+  `2010_0 a 14` = c(25.4, 29.2, 25.1, 26.2, 28.3, 27.2, 26.5, 29.3, 27.7, 27.2, 23.3, 23.5, 25.9, 23.9, 25.6, 22.4),
+  `2010_15 a 64` = c(65.0, 65.0, 65.0, 63.9, 61.8, 63.3, 63.2, 64.8, 63.7, 62.7, 66.9, 67.4, 67.2, 66.5, 65.6, 69.4),
+  `2010_65 +` = c(9.5, 5.8, 10.0, 9.9, 9.9, 9.6, 10.3, 5.9, 8.6, 10.1, 9.7, 9.1, 6.9, 9.6, 8.8, 8.1),
+  `2010_Razão de Dependência` = c(53.7, 53.9, 53.9, 56.5, 61.9, 58.1, 58.2, 54.3, 57.1, 59.5, 49.4, 48.3, 48.9, 50.4, 52.4, 44.0),
+  `2010_Índice de Envelhecimento` = c(37.4, 19.9, 39.8, 37.9, 35.1, 35.2, 38.7, 20.3, 31.0, 37.2, 41.8, 38.7, 26.8, 40.2, 34.3, 36.3),
+  `2022_0 a 14` = c(18.7, 21.0, 18.5, 18.7, 19.2, 19.0, 19.7, 19.6, 19.9, 17.2, 18.1, 18.7, 19.2, 17.3, 19.0, 18.1),
+  `2022_15 a 64` = c(68.3, 70.3, 67.0, 67.1, 66.9, 67.2, 65.5, 69.4, 67.8, 65.3, 67.7, 68.6, 70.2, 68.0, 68.3, 69.6),
+  `2022_65 +` = c(13.0, 8.7, 14.5, 14.2, 14.0, 13.9, 14.8, 11.0, 12.3, 17.5, 14.2, 12.7, 10.6, 14.7, 12.7, 12.4),
+  `2022_Razão de Dependência` = c(46.4, 42.3, 49.3, 49.1, 49.5, 48.9, 52.7, 44.2, 47.6, 53.2, 47.7, 45.8, 42.5, 47.1, 46.5, 43.7),
+  `2022_Índice de Envelhecimento` = c(69.1, 41.4, 78.8, 75.8, 73.0, 73.0, 74.8, 56.3, 61.8, 101.9, 78.4, 68.0, 55.5, 84.9, 66.7, 68.6)
+)
+
+
+```
+
+```{r}
+razao_dep %>% select(-Código) %>% 
+  mutate(Grupo = case_when(
+    Municipio == "Teófilo Otoni" ~ "Grupo 1",
+    Municipio == "Salinas" | Municipio == "Capelinha" | Municipio == "Araçuaí" ~ "Grupo 2",
+    Municipio == "Pedra Azul" | Municipio == "Minas Novas" | Municipio == "Medina" |
+    Municipio == "Turmalina" | Municipio == "Itaobim" | Municipio == "Malacacheta" ~ "Grupo 3",
+    Municipio == "Itinga" | Municipio == "Virgem da Lapa" | Municipio == "Coronel Murta" |
+    Municipio == "Rubelita" ~ "Grupo 4")) %>% 
+  group_by(Grupo) %>% 
+  gt() %>% 
+  tab_header(
+    title = "Razão de dependência e ìndice de envelhecimento  - 2010 e 2022",
+  )%>%
+  opt_align_table_header(align = "left") %>%
+  tab_stubhead(label = md("Region and <br />IAP Type")) %>%
+  tab_style(
+    style = cell_text(size = "smaller"),
+    locations = cells_body()
+  )  %>% #rótulo
+  opt_table_font(font = google_font(name = "Karla")) %>% 
+  tab_options(data_row.padding = px(6),
+              heading.align = 'left',
+              column_labels.background.color = 'dodgerblue4',
+              heading.title.font.size = px(26)) %>% 
+  tab_style(
+    style = cell_text(
+      color = 'dodgerblue4', 
+      weight = 'bold', 
+      font = google_font('Merriweather')
+    ),
+    locations = cells_title(groups = 'title')
+  ) %>%
+  cols_label(X2010_0.a.14 = '0-14 anos',
+             X2010_15.a.64 = '15-64 anos',
+             X2010_65.. = '65+ anos',
+             X2010_Razão.de.Dependência = 'Razão de Dependência',
+             X2010_Índice.de.Envelhecimento = 'Índice de Envelhecimento',
+             X2022_0.a.14 = '0-14 anos',
+             X2022_15.a.64 = '15-64 anos',
+             X2022_65.. = '65+ anos',
+             X2022_Razão.de.Dependência = 'Razão de Dependência',
+             X2022_Índice.de.Envelhecimento = 'Índice de Envelhecimento'
+  ) %>% 
+  tab_spanner(
+    label = "2010",
+    columns = 2:6) %>% 
+  tab_spanner(
+    label = "2022",
+    columns = 7:12)
+
+
+####
+```

@@ -1,0 +1,328 @@
+---
+title: "Equipamentos de saúde e educação"
+editor: visual
+authors: 
+- Caio Gonçalves 
+- Vitor Marinho
+- Cláudio Shikida
+---
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+```
+
+```{css}
+#| echo: false
+p {
+  text-align: justify
+}
+```
+## Qual a situação desses municípios em termos de equipamentos de saúde e educação?
+
+Usando os dados do Cadastro Nacional de Estabelecimentos de Saúde (CNES) foi possível verificar o aumento dos estabelecimentos entre os anos de 2010 e 2022. Ressalta-se que nesse total incluem-se hospitais, tanto públicos quanto privados, hospitais gerais e especializados, além de clínicas e consultórios, unidades básicas de saúde, laboratórios, entre outros.
+
+A figura a seguir ilustra a situação para cada um dos municípios analisados. Nesta medida, destaca-se Teófilo Otoni, que passou de 319 para 499 estabelecimentos de saúde cadastrados em 2022, um aumento de 56% em 12 anos.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+library(tidyverse)
+# options(scipen=999)
+# 
+# #========================== manipulação 
+# data <- readRDS("estabelecimentos_saude.rds")
+# 
+# municipios_vale <- c(
+#   3103405, 3112307, 3119500, 3133303, 3134004, 3139201, 3141405, 3141801,
+#   3148707, 3168606, 3169703, 3156502, 3171600, 3157005
+# )
+# 
+# df_nome <- readRDS('df_nome.rds')
+# 
+# # Filtrar 
+# data <- data %>%
+#   filter(id_municipio %in% as.character(municipios_vale)) 
+# 
+# # Filtrar, agrupar e resumir os dados
+# data_filtered <- data %>%
+#   filter(ano %in% c('2010', '2022')) %>%
+#   group_by(ano, id_municipio) %>%
+#   summarise(qtd_cnes = n_distinct(id_estabelecimento_cnes)) %>% 
+#   left_join(df_nome, by = "id_municipio")
+# 
+# saveRDS(data_filtered,"data_estabelecimentos.RDS")
+# data_filtered <- readRDS("data_estabelecimentos.RDS")
+# # 
+# write.csv(data_filtered,"data_filtered.csv")
+
+data_filtered <- read.csv("data_filtered.csv")
+data_filtered <- data_filtered[,2:5]
+
+#===================visualização 
+ ggplot(data_filtered, aes(x = Municipio, y = qtd_cnes, fill = as.factor(ano))) +
+  geom_bar(stat = "identity", position = "dodge", color = "white") +
+  geom_text(aes(label = qtd_cnes), position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  labs(
+    title = "Quantidade de Estabelecimentos de Saúde",
+    subtitle = "Municípios do Vale do Lítio - 2010 e 2022",
+    x = "Município",
+    y = "Quantidade de Estabelecimentos",
+    fill = "Ano",
+    # caption = "Fonte: Ministério da Saúde"
+  )  +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set2") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+```
+
+Fonte: @cnes2022. Elaboração: FJP/Diretoria de Estatística e Informações.
+
+Em termos dos leitos em cada um dos municípios, novamente Teófilo Otoni foi o destaque, com o maior número total de leitos, somando 352, com uma distribuição significativa em todas as categorias (especialmente em leitos cirúrgicos com 160 unidades).
+
+Os municípios do Grupo 2 mostraram uma quantidade moderada de leitos, com Salinas possuindo o maior total do grupo, com 89 leitos. O Grupo 3 tem números mais reduzidos, sendo Itaobim o que apresenta o maior total, com 49 leitos. Por fim, o Grupo 4 tem uma situação particularmente crítica em termos de leitos hospitalares, com Coronel Murta e Itinga não apresentando leitos em nenhuma categoria, e Rubelita tendo apenas três leitos classificados como "Outros Leitos". Virgem da Lapa possui 23 leitos, todos concentrados nas categorias de leitos clínicos e cirúrgicos. A tabela sugere diferenças significativas na capacidade hospitalar entre os municípios.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+library(gt)
+
+# leitos_summary <- readRDS('leitos_summary.rds')
+# 
+# leitos_summary <-  leitos_summary %>% filter(ano==2022) %>%  select(Municipio, total_leito_clinico, total_leito_cirurgico,outros_leitos) %>% group_by(Municipio) %>%  mutate(Grupo = case_when(
+#     Municipio == "Teófilo Otoni" ~ "Grupo 1",
+#     Municipio == "Salinas" | Municipio == "Capelinha" | Municipio == "Araçuaí" ~ "Grupo 2",
+#     Municipio == "Pedra Azul" | Municipio == "Minas Novas" | Municipio == "Medina" |
+#     Municipio == "Turmalina" | Municipio == "Itaobim" | Municipio == "Malacacheta" ~ "Grupo 3",
+#     Municipio == "Itinga" | Municipio == "Virgem da Lapa" | Municipio == "Coronel Murta" |
+#     Municipio == "Rubelita" ~ "Grupo 4"),
+#     Total = total_leito_clinico+total_leito_cirurgico+outros_leitos) 
+#      
+# saveRDS(leitos_summary ,"leitos_summary.RDS")
+# leitos_summary  <- readRDS("leitos_summary.RDS")
+# 
+# write.csv(leitos_summary ,"leitos_summary.csv")
+leitos_summary <- read.csv("leitos_summary.csv")
+leitos_summary <- leitos_summary[,2:7]
+ 
+  leitos_summary %>% arrange(Grupo) %>% 
+  group_by(Grupo) %>%   gt() %>%   tab_header(
+    title = "Quantidade Leitos Hospitalares",
+    subtitle = "Municípios do Vale do Lítio - 2022",
+  )%>%
+  opt_align_table_header(align = "left") %>%
+  tab_stubhead(label = md("Region and <br />IAP Type")) %>%
+  tab_style(
+    style = cell_text(size = "smaller"),
+    locations = cells_body()
+  )  %>% #rótulo
+  opt_table_font(font = google_font(name = "Karla")) %>% 
+  tab_options(data_row.padding = px(6),
+              heading.align = 'left',
+              column_labels.background.color = 'dodgerblue4',
+              heading.title.font.size = px(20)) %>% 
+  tab_style(
+    style = cell_text(
+      color = 'dodgerblue4', 
+      weight = 'bold', 
+      font = google_font('Merriweather')
+    ),
+    locations = cells_title(groups = 'title')
+  ) %>%
+  cols_label(
+    total_leito_clinico = 'Leito Clínico',
+    total_leito_cirurgico = 'Leito Cirúrgico',
+    outros_leitos = 'Outros Leitos',
+    Total = "Total"
+  )  
+
+  
+  
+  
+```
+
+Fonte: @cnes2022. Elaboração: FJP/Diretoria de Estatística e Informações.
+
+No que se refere à formação de capital humano nos municípios do Vale do Lítio, optou-se pela análise do ensino superior, tendo em vista o potencial de demanda de mão-de-obra qualificada. Como se sabe, a produção de veículos elétricos ou mesmo de baterias para estes são atividades que exigem não só matérias-primas como o lítio, mas também mão-de-obra que atendam alguns requisitos mínimos que vão desde o conhecimento de várias línguas até o conhecimento dos diversos processos, por exemplo, envolvidos na reciclagem de baterias.
+
+Com os dados do Censo da Educação Superior, é possível verificar a quantidade de cursos superiores ofertados (10 dos 14 municípios possuem oferta de ensino superior) e sua variação entre 2010 e 2021. Via de regra, todos os municípios apresentaram aumento no número de cursos superiores.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+library(tidyverse)
+#=========manipulacao
+municipios_vale <- c(
+  3103405, 3112307, 3119500, 3133303, 3134004, 3139201, 3141405, 3141801,
+  3148707, 3168606, 3169703, 3156502, 3171600, 3157005
+)
+
+df_nome <- readRDS('df_nome.rds')
+
+df <- read_rds('censo_sup.rds')%>%
+  filter(id_municipio %in% as.character(municipios_vale))  %>% 
+  left_join(df_nome, by = "id_municipio")
+
+# Filtrar e converter ano para formato de data
+df_filtered <- df %>%
+  filter(id_municipio %in% as.character(municipios_vale))  %>% 
+  left_join(df_nome, by = "id_municipio") %>%
+  group_by(ano, id_municipio) %>%
+  summarise(qtd_cursos = n_distinct(nome_curso_cine),
+            Municipio = Municipio)%>%
+  filter(ano %in% c('2010', '2021')) 
+
+
+
+
+#============ viz
+
+# Criar o gráfico de barras
+ggplot(df_filtered, aes(x = Municipio, y = qtd_cursos, fill = as.factor(ano))) +
+  geom_bar(stat = "identity", position = "dodge", color = "white") +
+  geom_text(aes(label = qtd_cursos), position = position_dodge(width = 0.9), vjust = -0.5, size = 3) +
+  labs(
+    title = iconv("Quantidade de Cursos Superiores", to = "UTF-8"),
+    subtitle = "Municípios do Vale do Lítio - 2020 e 2021",
+    x = "Município",
+    y = "Quantidade de Cursos",
+    fill = "Ano",
+    # caption = "Fonte: INEP"
+  ) +
+  theme_minimal() +
+  scale_fill_brewer(palette = "Set1") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+```
+
+Fonte: @censo2022superior. Elaboração: FJP/Diretoria de Estatística e Informações.
+
+Quando se analisa o grau acadêmico, a maioria oferta é de cursos tecnológicos e, a depender do município, a licenciatura vem em segundo lugar. Além disso, embora as informações sobre os cursos sejam precárias em termos do quantitativo de matriculas, percebe-se que apenas em um município há oferta de curso de engenharia, no caso, a engenharia civil.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+library(RColorBrewer)
+# Distribuição de Tipos de Grau Acadêmico
+tipos_vale_2021 <- df %>% 
+  filter(ano == 2021) %>% 
+  select(id_municipio, ano, tipo_grau_academico) %>%
+  left_join(df_nome)
+
+# Defina a ordem dos níveis do tipo_grau_academico
+ordem_niveis <- c(
+  "1" = "Bacharelado",
+  "2" = "Licenciatura",
+  "3" = "Tecnológico",
+  "4" = "Bacharelado e Licenciatura",
+  "." = "Não aplicável"
+)
+
+# Mapeie o fator tipo_grau_academico para a ordem desejada
+tipos_vale_2021$tipo_grau_academico <- factor(
+  tipos_vale_2021$tipo_grau_academico,
+  levels = names(ordem_niveis),
+  labels = ordem_niveis
+)
+
+# Gráfico de barras com valores nas barras e duas casas decimais
+ggplot(tipos_vale_2021, aes(x = Municipio, fill = tipo_grau_academico)) +
+  geom_bar(position = "fill") +
+  geom_text(
+    aes(
+      label = scales::percent(after_stat(count / tapply(count, x, sum)[x]), accuracy = 0.01)
+    ),
+    stat = "count",
+    position = position_fill(vjust = 0.5),
+    size = 3,
+    color = "white"
+  ) +
+  labs(
+    title = "Distribuição dos cursos segundo tipos de grau acadêmico",
+    subtitle = "Municípios do Vale do Lítio - 2021",
+    x = "Município",
+    y = "Proporção",
+    fill = "Tipo de Grau Acadêmico"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(
+    values = brewer.pal(5, "Set2"),  # paleta de cor 
+    name = "Grau Acadêmico",
+    labels = ordem_niveis
+  ) +
+  scale_x_discrete(labels = function(x) stringr::str_wrap(x, width = 10)) +
+  scale_y_continuous(labels = scales::percent_format(scale = 1)) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1))
+
+
+
+```
+
+Fonte: @censo2022superior. Elaboração: FJP/Diretoria de Estatística e Informações.
+
+Outros cursos ofertados incluem: pedagogia, direito, administração, ciências contábeis, educação física, serviço social, matemática, interdiciplinar em ciência e tecnologia, pscicologia, enfermagem, ciências biológicas, fisioterapia e farmácia, entre outros.Não é difícil perceber que a adequação da formação de capital humano para as possíveis atividades no Vale do Lítio necessita de uma atenção especial, seja por meio do suporte de universidades públicas estaduais ou privadas.\
+#matemática, física, química, ciências contábeis, engenharia de alimentos, administração (presencial e à distância), administração pública, artes visuais, pedagogia, educação física, artes, análise e desenvolvimento de sistemas, engenharia agrícola e ambiental,pedagogia, história, direito, letras e gestão ambiental.
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+municipios_vale <- c(
+  3103405, 3112307, 3119500, 3133303, 3134004, 3139201, 3141405, 3141801,
+  3148707, 3168606, 3169703, 3156502, 3171600, 3157005
+)
+
+df_nome <- readRDS('df_nome.rds')
+
+df <- read_rds('censo_sup.rds')%>%
+  filter(id_municipio %in% as.character(municipios_vale))  %>% 
+  left_join(df_nome, by = "id_municipio")%>%
+  mutate(nome_curso = str_to_title(nome_curso))
+
+```
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
+library(dplyr)
+library(gt)
+
+# Passo 1: Criar uma coluna com o nome do curso e o total de inscritos entre parênteses
+df2 <- df %>%
+  group_by(Municipio.x, nome_curso) %>%
+  summarise(total_inscritos = sum(quantidade_matriculas, na.rm = TRUE)) %>%
+  ungroup() 
+df2 <-  df2%>%
+  mutate(nome_curso = str_to_title(nome_curso))
+
+# Passo 4: Ordenar e selecionar os 5 cursos com o maior número de inscritos por município
+top_5_cursos_por_municipio <- df2 %>%
+  arrange(Municipio.x, desc(total_inscritos)) %>%
+  group_by(Municipio.x) 
+
+top_5_cursos_por_municipio %>% 
+  filter(total_inscritos > 0) %>% 
+  slice_head(n = 5) %>%
+  gt(rowname_col = "row", groupname_col = "Municipio.x", locale = "fr") %>% 
+  cols_label(
+    nome_curso = 'Curso',
+    total_inscritos = 'Total de Matriculas',
+    Municipio.x = 'Municipio'
+  )  %>%
+  tab_options(data_row.padding = px(-2)) %>%
+  opt_align_table_header(align = "left") %>%
+  tab_stubhead(label = md("Region and <br />IAP Type")) %>%
+  tab_style(
+    style = cell_text(size = "smaller"),
+    locations = cells_body()
+  )  %>% #rótulo
+  opt_table_font(font = google_font(name = "Karla")) %>%
+  tab_options(data_row.padding = px(6),
+              heading.align = 'left',
+              column_labels.background.color = 'dodgerblue4',
+              heading.title.font.size = px(20)) %>%
+  tab_style(
+    style = cell_text(
+      color = 'dodgerblue4',
+      weight = 'bold',
+      font = google_font('Merriweather')
+    ),
+    locations = cells_title(groups = 'title')
+  ) 
+```
+
+Fonte: @censo2022superior. Elaboração: FJP/Diretoria de Estatística e Informações.
