@@ -82,19 +82,42 @@ municipios_vale <- c(
   3157005  # Salinas
 )
 
- tabela01_economia <- readRDS("dados/tabela01_economia.rds") %>% 
-   mutate(Grupo = case_when(
-    municipio == "Teófilo Otoni" ~ "Grupo 1",
-    municipio == "Salinas" | municipio == "Capelinha" | municipio == "Araçuaí" ~ "Grupo 2",
-    municipio == "Pedra Azul" | municipio == "Minas Novas" | municipio == "Medina" |
-    municipio == "Turmalina" | municipio == "Itaobim" | municipio == "Malacacheta" ~ "Grupo 3",
-    municipio == "Itinga" | municipio == "Virgem da Lapa" | municipio == "Coronel Murta" |
-    municipio == "Rubelita" ~ "Grupo 4")) %>% arrange(Grupo) %>% select(-ibge7)
+###########
+# Dados
+Municipio <- c("Teófilo Otoni", "Araçuaí", "Capelinha", "Salinas", "Itaobim", "Medina", "Minas Novas", "Malacacheta", "Pedra Azul", "Turmalina", "Itinga", "Rubelita", "Virgem da Lapa", "Coronel Murta")
+pib <- c(2951670, 520019, 888063, 667409, 308690, 253051, 350142, 235819, 401448, 443706, 148258, 80085, 131604, 119865)
+pib_per_capita <- c(20893.97, 14163.67, 23174.33, 15942.32, 14701.65, 12224.08, 11112.45, 12708.51, 16498.08, 21879.01, 9849.06, 14277.94, 9585.82, 13016.09)
+ranking_estadual <- c(54, 202, 135, 163, 299, 339, 268, 353, 247, 228, 456, 636, 482, 515)
+primeira_atividade <- c("Demais serviços", "Demais serviços", "Demais serviços", "Demais serviços", "Demais serviços", "Administração, defesa, educação e saúde públicas e seguridade social", "Administração, defesa, educação e saúde públicas e seguridade social", "Administração, defesa, educação e saúde públicas e seguridade social", "Administração, defesa, educação e saúde públicas e seguridade social", "Produção florestal, pesca e aquicultura", "Administração, defesa, educação e saúde públicas e seguridade social", "Administração, defesa, educação e saúde públicas e seguridade social", "Administração, defesa, educação e saúde públicas e seguridade social", "Administração, defesa, educação e saúde públicas e seguridade social")
+segunda_atividade <- c("Administração, defesa, educação e saúde públicas e seguridade social", "Administração, defesa, educação e saúde públicas e seguridade social", "Administração, defesa, educação e saúde públicas e seguridade social", "Administração, defesa, educação e saúde públicas e seguridade social", "Administração, defesa, educação e saúde públicas e seguridade social", "Demais serviços", "Demais serviços", "Demais serviços", "Demais serviços", "Demais serviços", "Demais serviços", "Demais serviços", "Demais serviços", "Demais serviços")
+terceira_atividade <- c("Comércio e reparação de veículos automotores e motocicletas", "Comércio e reparação de veículos automotores e motocicletas", "Comércio e reparação de veículos automotores e motocicletas", "Comércio e reparação de veículos automotores e motocicletas", "Comércio e reparação de veículos automotores e motocicletas", "Comércio e reparação de veículos automotores e motocicletas", "Produção florestal, pesca e aquicultura", "Comércio e reparação de veículos automotores e motocicletas", "Indústrias extrativas", "Administração, defesa, educação e saúde públicas e seguridade social", "Indústrias extrativas", "Indústrias extrativas", "Comércio e reparação de veículos automotores e motocicletas", "Indústrias extrativas")
 
-tabela01_economia %>% group_by(Grupo) %>% gt() %>%
+# Criar o DataFrame
+df <- data.frame(Municipio = Municipio,
+                 PIB = pib,
+                 `PIB per capita` = pib_per_capita,
+                 `Ranking Estadual` = ranking_estadual,
+                 `Primeira atividade mais importante` = primeira_atividade,
+                 `Segunda atividade mais importante` = segunda_atividade,
+                 `Terceira atividade mais importante` = terceira_atividade)
+ 
+#----------------------tabela03economia
+
+tabela03_economia <- readRDS("dados/tabela03_economia.rds")
+
+df %>% 
+  mutate(Grupo = case_when(
+    Municipio == "Teófilo Otoni" ~ "Grupo 1",
+    Municipio == "Salinas" | Municipio == "Capelinha" | Municipio == "Araçuaí" ~ "Grupo 2",
+    Municipio == "Pedra Azul" | Municipio == "Minas Novas" | Municipio == "Medina" |
+    Municipio == "Turmalina" | Municipio == "Itaobim" | Municipio == "Malacacheta" ~ "Grupo 3",
+    Municipio == "Itinga" | Municipio == "Virgem da Lapa" | Municipio == "Coronel Murta" |
+    Municipio == "Rubelita" ~ "Grupo 4")) %>% 
+  arrange(Grupo) %>% 
+  group_by(Grupo) %>% 
+  gt() %>% 
   tab_header(
     title = "Produto Interno Bruto, ranking do PIB, PIB per capita e atividades econômicas mais importantes",
-    subtitle = md("Municípios do Vale do Lítio - 2021")
   )%>%
   opt_align_table_header(align = "left") %>%
   tab_stubhead(label = md("Region and <br />IAP Type")) %>%
@@ -106,7 +129,7 @@ tabela01_economia %>% group_by(Grupo) %>% gt() %>%
   tab_options(data_row.padding = px(6),
               heading.align = 'left',
               column_labels.background.color = 'dodgerblue4',
-              heading.title.font.size = px(20)) %>% 
+              heading.title.font.size = px(26)) %>% 
   tab_style(
     style = cell_text(
       color = 'dodgerblue4', 
@@ -116,19 +139,23 @@ tabela01_economia %>% group_by(Grupo) %>% gt() %>%
     locations = cells_title(groups = 'title')
   ) %>%
   cols_label(
-    municipio = 'Município',
-    produto_interno_bruto_a_precos_correntes_r_1_000 = 'PIB (R$)',
-    produto_interno_bruto_per_capita_a_precos_correntes_r_1_00 = 'PIB per capita (R$)',
-    ranking_uf = 'Ranking Estadual',
-    atividade_com_maior_valor_adicionado_bruto = 'Primeira atividade mais importante',
-    atividade_com_segundo_maior_valor_adicionado_bruto = 'Segunda atividade mais importante',
-    atividade_com_terceiro_maior_valor_adicionado_bruto = 'Terceira atividade mais importante'
-  ) |>
-  fmt_number(columns = produto_interno_bruto_a_precos_correntes_r_1_000, suffixing = T)
-
+    Municipio = "Município",
+    PIB = 'PIB (R$ mil)',
+    PIB.per.capita = 'PIB per capita (R$)',
+    Ranking.Estadual = 'Ranking Estadual',
+    Primeira.atividade.mais.importante = 'Primeira atividade mais importante',
+    Segunda.atividade.mais.importante = 'Segunda atividade mais importante',
+    Terceira.atividade.mais.importante = 'Terceira atividade mais importante'
+  )  %>% 
+  fmt_number(
+    columns = 5,  # Seleciona colunas
+    decimals = 2) %>%  # Definir 2 casas decimais 
+  fmt_number(dec_mark = ',',
+             sep_mark = '.')  %>% 
+  tab_source_note(
+    source_note = md("Fonte: RAIS. Elaboração: FJP/Diretoria de Estatística e Informações. ")
+  ) #define separadores
 ```
-
-Fonte: @ibge2021contasregionais. Elaboração: FJP/Diretoria de Estatística e Informações.
 
 ```{r, eval = FALSE,echo=FALSE, warning=FALSE, message=FALSE}
 
@@ -183,6 +210,75 @@ Fonte: @ibge2021contasregionais. Elaboração: FJP/Diretoria de Estatística e I
 ## Qual o panorama atual das exportações dos municípios do Vale do Lítio? {#sec-exportacao}
 
 Ao avaliar as informações do comércio exterior fornecidas pela Secretaria de Comércio Exterior (Secex) do Ministério do Desenvolvimento, Indústria, Comércio e Serviços (MDIC), observa-se uma nova dinâmica nas exportações dos municípios do Vale do Lítio. Esses dados revelam detalhes sobre as principais commodities exportadas, assim como as tendências de crescimento nessas atividades. Seguem os destaques:
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Dados
+library(readxl)
+library(dplyr)
+library(gt)
+
+df_exportacao <- read_excel("df_exportacao.xlsx") %>% 
+  janitor::clean_names()
+
+
+# Ajustando os nomes dos municípios para extrair apenas o nome, removendo a parte "- MG"
+df_exportacao <- df_exportacao %>%
+  mutate(Municipio = gsub(" - MG", "", rotulos_de_linha)) %>%
+  rename(`2023` = soma_de_2023_valor_fob_us,
+         `2022` = soma_de_2022_valor_fob_us,
+         `2021` = soma_de_2021_valor_fob_us,
+         `2020` = soma_de_2020_valor_fob_us,
+         `2019` = soma_de_2019_valor_fob_us,
+         `2018` = soma_de_2018_valor_fob_us,
+         `2017` = soma_de_2017_valor_fob_us,
+         `2016` = soma_de_2016_valor_fob_us,
+         `2015` = soma_de_2015_valor_fob_us)  # Renomeando a coluna
+
+# Classificando os municípios em grupos
+df_exportacao <- df_exportacao %>%
+  mutate(Grupo = case_when(
+    Municipio == "Teófilo Otoni" ~ "Grupo 1",
+    Municipio %in% c("Salinas", "Capelinha", "Araçuaí") ~ "Grupo 2",
+    Municipio %in% c("Pedra Azul", "Minas Novas", "Medina", "Turmalina", "Itaobim", "Malacacheta") ~ "Grupo 3",
+    Municipio %in% c("Itinga", "Virgem da Lapa", "Coronel Murta", "Rubelita") ~ "Grupo 4"
+  )) %>%
+  arrange(Grupo) %>%
+  group_by(Grupo)
+
+# Criando a tabela com gt
+df_exportacao %>%
+  gt() %>%
+  tab_header(
+    title = "Valor das Exportação por Município"
+  ) %>%
+  cols_label(
+    Municipio = "Município"
+  ) %>%
+  fmt_number(
+    columns = vars(2:10),
+    decimals = 2,
+    dec_mark = ',',
+    sep_mark = '.'
+  ) %>%
+  tab_style(
+    style = cell_text(size = "smaller"),
+    locations = cells_body(columns = vars(`2023`))
+  ) %>%
+  tab_options(
+    data_row.padding = px(6),
+    heading.align = 'left',
+    column_labels.background.color = 'dodgerblue4',
+    heading.title.font.size = px(26)
+  ) %>%
+  tab_style(
+    style = cell_text(color = 'dodgerblue4', weight = 'bold'),
+    locations = cells_title(groups = 'title')
+  ) %>%
+  cols_label(
+    rotulos_de_linha = "Município") %>% 
+  tab_source_note(source_note = 'Nota: Valor FOB (US$)')
+
+```
 
 **Grupo 1**
 
