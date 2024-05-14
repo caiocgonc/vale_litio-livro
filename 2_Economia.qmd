@@ -223,7 +223,7 @@ df_exportacao <- read_excel("df_exportacao.xlsx") %>%
 
 # Ajustando os nomes dos municípios para extrair apenas o nome, removendo a parte "- MG"
 df_exportacao <- df_exportacao %>%
-  mutate(Municipio = gsub(" - MG", "", rotulos_de_linha)) %>%
+  mutate(rotulos_de_linha = gsub(" - MG", "", rotulos_de_linha)) %>%
   rename(`2023` = soma_de_2023_valor_fob_us,
          `2022` = soma_de_2022_valor_fob_us,
          `2021` = soma_de_2021_valor_fob_us,
@@ -232,18 +232,18 @@ df_exportacao <- df_exportacao %>%
          `2018` = soma_de_2018_valor_fob_us,
          `2017` = soma_de_2017_valor_fob_us,
          `2016` = soma_de_2016_valor_fob_us,
-         `2015` = soma_de_2015_valor_fob_us)  # Renomeando a coluna
+         `2015` = soma_de_2015_valor_fob_us) 
 
 # Classificando os municípios em grupos
-df_exportacao <- df_exportacao %>%
+df_exportacao <- df_exportacao %>% 
   mutate(Grupo = case_when(
-    Municipio == "Teófilo Otoni" ~ "Grupo 1",
-    Municipio %in% c("Salinas", "Capelinha", "Araçuaí") ~ "Grupo 2",
-    Municipio %in% c("Pedra Azul", "Minas Novas", "Medina", "Turmalina", "Itaobim", "Malacacheta") ~ "Grupo 3",
-    Municipio %in% c("Itinga", "Virgem da Lapa", "Coronel Murta", "Rubelita") ~ "Grupo 4"
+    rotulos_de_linha  == "Teófilo Otoni" ~ "Grupo 1",
+    rotulos_de_linha  %in% c("Salinas", "Capelinha", "Araçuaí") ~ "Grupo 2",
+    rotulos_de_linha  %in% c("Pedra Azul", "Minas Novas", "Medina", "Turmalina", "Itaobim", "Malacacheta") ~ "Grupo 3",
+    rotulos_de_linha  %in% c("Itinga", "Virgem da Lapa", "Coronel Murta", "Rubelita") ~ "Grupo 4"
   )) %>%
   arrange(Grupo) %>%
-  group_by(Grupo)
+  group_by(Grupo) 
 
 ### definir paleta de cores 
 my_pal <- scales::col_numeric(
@@ -260,7 +260,7 @@ df_exportacao %>%
     title = "Valor das Exportações por Município"
   ) %>%
   cols_label(
-    Municipio = "Município"
+    rotulos_de_linha  = "Município"
   ) %>%
   fmt_number(
     columns = vars(2:10),
