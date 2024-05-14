@@ -71,6 +71,17 @@ df_nome <- data.frame(
   vale_do_litio = rep(1,14)
 )
 
+
+### definir paleta de cores 
+my_pal <- scales::col_numeric(
+  paletteer::paletteer_d(
+    palette = "ggsci::red_material"
+    ) %>% as.character(),
+  domain = NULL
+  )
+
+
+
 tabela00_social <- left_join(imrs,df_nome) %>% 
   mutate(Grupo = case_when(
     Nome_munic == "Teófilo Otoni" ~ "Grupo 1",
@@ -123,11 +134,140 @@ tabela00_social  %>%
     ranking_imrs_seguranca = 'Ranking IMRS Segurança',
     ranking_imrs_vulnerabilidade = 'Ranking IMRS Vulnerabilidade',
     ranking_imrs_saneamento = 'Ranking IMRS Saneamento'
-  )  
+  )   %>% 
+  data_color(
+    columns = c(2:8),
+    colors = my_pal
+      )
 
 ```
 
 Fonte: @fjp2020imrs . Elaboração: FJP/Diretoria de Estatística e Informações.
+
+### GINI
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Criando o vetor com os municípios
+municipios <- c("Teófilo Otoni", "Araçuaí", "Capelinha", "Salinas", "Itaobim", "Malacacheta", "Medina", "Minas Novas", "Pedra Azul", "Turmalina", "Coronel Murta", "Itinga", "Rubelita", "Virgem da Lapa")
+
+# Criando os vetores com os dados para cada ano
+ano_1991 <- c(0.620, 0.560, 0.590, 0.520, 0.480, 0.540, 0.610, 0.530, 0.560, 0.510, 0.490, 0.510, 0.480, 0.500)
+ano_2000 <- c(0.600, 0.620, 0.570, 0.580, 0.610, 0.660, 0.560, 0.530, 0.600, 0.550, 0.530, 0.600, 0.700, 0.600)
+ano_2010 <- c(0.570, 0.570, 0.520, 0.650, 0.510, 0.530, 0.570, 0.500, 0.530, 0.500, 0.490, 0.500, 0.500, 0.490)
+
+# Criando o DataFrame
+df_gini <- data.frame(Municipios = municipios, 
+                 "1991" = ano_1991, 
+                 "2000" = ano_2000, 
+                 "2010" = ano_2010)
+
+df_gini <- df_gini %>% 
+  mutate(Grupo = case_when(
+    Municipios  == "Teófilo Otoni" ~ "Grupo 1",
+    Municipios  %in% c("Salinas", "Capelinha", "Araçuaí") ~ "Grupo 2",
+    Municipios  %in% c("Pedra Azul", "Minas Novas", "Medina", "Turmalina", "Itaobim", "Malacacheta") ~ "Grupo 3",
+    Municipios  %in% c("Itinga", "Virgem da Lapa", "Coronel Murta", "Rubelita") ~ "Grupo 4"
+  )) %>%
+  arrange(Grupo) %>%
+  group_by(Grupo) 
+
+
+# Exibindo o DataFrame
+df_gini %>% 
+  gt() %>%
+  tab_header(
+    title = "GINI"
+  ) %>%
+  cols_label(
+    Municipios  = "Município"
+  ) %>%
+  fmt_number(
+    columns = vars(2:4),
+    decimals = 2,
+    dec_mark = ',',
+    sep_mark = '.'
+  ) %>%
+  tab_style(
+    style = cell_text(size = "smaller"),
+    locations = cells_body(columns = vars(2:4))
+  ) %>%
+  tab_options(
+    data_row.padding = px(6),
+    heading.align = 'left',
+    column_labels.background.color = 'dodgerblue4',
+    heading.title.font.size = px(26)
+  ) %>%
+  tab_style(
+    style = cell_text(color = 'dodgerblue4', weight = 'bold'),
+    locations = cells_title(groups = 'title')
+  ) %>%
+  cols_label( Municipios = "Município",
+              X1991 = '1991',
+              X2000 = '2000',
+              X2010 = '2010')  %>%
+  tab_source_note(source_note = md("Fonte: IBGE. Elaboração: FJP/Diretoria de Estatística e Informações. ")) 
+ 
+
+```
+
+### IDHM
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Criando o vetor com os municípios
+municipios <- c("Teófilo Otoni", "Araçuaí", "Capelinha", "Salinas", "Itaobim", "Malacacheta", "Medina", "Minas Novas", "Pedra Azul", "Turmalina", "Coronel Murta", "Itinga", "Rubelita", "Virgem da Lapa")
+
+# Criando os vetores com os dados para cada ano
+idhm_1991 <- c(0.440, 0.338, 0.355, 0.368, 0.369, 0.321, 0.326, 0.282, 0.364, 0.308, 0.334, 0.276, 0.266, 0.348)
+idhm_2000 <- c(0.589, 0.516, 0.490, 0.535, 0.542, 0.482, 0.477, 0.421, 0.516, 0.516, 0.515, 0.440, 0.442, 0.513)
+idhm_2010 <- c(0.701, 0.663, 0.653, 0.679, 0.629, 0.618, 0.624, 0.633, 0.627, 0.682, 0.627, 0.600, 0.582, 0.610)
+ranking_2010 <- c(223, 469, 529, 364, 660, 721, 699, 637, 675, 347, 669, 778, 815, 750)
+
+# Criando o DataFrame
+df_idhm <- data.frame(Municípios = municipios, 
+                 "IDHM 1991" = idhm_1991, 
+                 "IDHM 2000" = idhm_2000, 
+                 "IDHM 2010" = idhm_2010,
+                 "Ranking 2010" = ranking_2010)
+
+# Renomeando as colunas
+names(df_gini)[names(df_gini) == "X1991"] <- "IDHM_1991"
+names(df_gini)[names(df_gini) == "X2000"] <- "IDHM_2000"
+names(df_gini)[names(df_gini) == "X2010"] <- "IDHM_2010"
+
+# tabela
+df_gini %>% 
+  gt() %>%
+  tab_header(
+    title = "GINI"
+  ) %>%
+  fmt_number(
+    columns = vars(IDHM_1991:IDHM_2010),
+    decimals = 2,
+    dec_mark = ',',
+    sep_mark = '.'
+  ) %>%
+  tab_style(
+    style = cell_text(size = "smaller"),
+    locations = cells_body(columns = vars(IDHM_1991:IDHM_2010))
+  ) %>%
+  tab_options(
+    data_row.padding = px(6),
+    heading.align = 'left',
+    column_labels.background.color = 'dodgerblue4',
+    heading.title.font.size = px(26)
+  ) %>%
+  tab_style(
+    style = cell_text(color = 'dodgerblue4', weight = 'bold'),
+    locations = cells_title(groups = 'title')
+  ) %>%
+  cols_label(IDHM_1991 = '1991',
+             IDHM_2000 = '2000',
+             IDHM_2010 = '2010')  %>%
+  tab_source_note(source_note = md("Fonte: PNUD. Elaboração: FJP/Diretoria de Estatística e Informações. "))
+
+
+
+```
 
 ## O que revelam os principais indicadores da área da educação, saúde, assistência social, segurança pública e saneamento básico?
 
