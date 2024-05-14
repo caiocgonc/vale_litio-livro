@@ -153,7 +153,7 @@ df %>%
   fmt_number(dec_mark = ',',
              sep_mark = '.')  %>% 
   tab_source_note(
-    source_note = md("Fonte: RAIS. Elaboração: FJP/Diretoria de Estatística e Informações. ")
+    source_note = md("Fonte: IBGE. Elaboração: FJP/Diretoria de Estatística e Informações. ")
   ) #define separadores
 ```
 
@@ -245,11 +245,19 @@ df_exportacao <- df_exportacao %>%
   arrange(Grupo) %>%
   group_by(Grupo)
 
+### definir paleta de cores 
+my_pal <- scales::col_numeric(
+  paletteer::paletteer_d(
+    palette = "ggsci::red_material"
+    ) %>% as.character(),
+  domain = NULL
+  )
+
 # Criando a tabela com gt
 df_exportacao %>%
   gt() %>%
   tab_header(
-    title = "Valor das Exportação por Município"
+    title = "Valor das Exportações por Município"
   ) %>%
   cols_label(
     Municipio = "Município"
@@ -262,7 +270,7 @@ df_exportacao %>%
   ) %>%
   tab_style(
     style = cell_text(size = "smaller"),
-    locations = cells_body(columns = vars(`2023`))
+    locations = cells_body(columns = vars(2:10))
   ) %>%
   tab_options(
     data_row.padding = px(6),
@@ -276,7 +284,11 @@ df_exportacao %>%
   ) %>%
   cols_label(
     rotulos_de_linha = "Município") %>% 
-  tab_source_note(source_note = 'Nota: Valor FOB (US$)') %>% tab_source_note(source_note = md("Fonte: COMEX-STAT. Elaboração: FJP/Diretoria de Estatística e Informações. ")) 
+  tab_source_note(source_note = 'Nota: Valor FOB (US$)') %>% tab_source_note(source_note = md("Fonte: COMEX-STAT. Elaboração: FJP/Diretoria de Estatística e Informações. ")) %>% 
+  data_color(
+    columns = c(2:10),
+    colors = my_pal
+      )
 
 ```
 
@@ -397,7 +409,11 @@ tabela03_economia  %>% select(-R_EMPRSFIC) %>%
   )  %>% 
   fmt_number(
     columns = 5,  # Seleciona colunas
-    decimals = 2)  # Definir 2 casas decimais 
+    decimals = 2,
+    dec_mark = ',',
+    sep_mark = '.')  # Definir 2 casas decimais 
+
+
 
 ```
 
