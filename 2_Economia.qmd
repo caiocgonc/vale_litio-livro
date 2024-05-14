@@ -276,7 +276,7 @@ df_exportacao %>%
   ) %>%
   cols_label(
     rotulos_de_linha = "Município") %>% 
-  tab_source_note(source_note = 'Nota: Valor FOB (US$)')
+  tab_source_note(source_note = 'Nota: Valor FOB (US$)') %>% tab_source_note(source_note = md("Fonte: COMEX-STAT. Elaboração: FJP/Diretoria de Estatística e Informações. ")) 
 
 ```
 
