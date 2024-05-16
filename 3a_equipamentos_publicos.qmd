@@ -18,6 +18,7 @@ p {
   text-align: justify
 }
 ```
+
 ## Qual a situação desses municípios em termos de equipamentos de saúde e educação?
 
 Usando os dados do Cadastro Nacional de Estabelecimentos de Saúde (CNES) foi possível verificar o aumento dos estabelecimentos entre os anos de 2010 e 2022. Ressalta-se que nesse total incluem-se hospitais, tanto públicos quanto privados, hospitais gerais e especializados, além de clínicas e consultórios, unidades básicas de saúde, laboratórios, entre outros.
@@ -326,3 +327,53 @@ top_5_cursos_por_municipio %>%
 ```
 
 Fonte: @censo2022superior. Elaboração: FJP/Diretoria de Estatística e Informações.
+
+### Aeroportos
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Criar o data frame
+municipios_data <- data.frame(
+  Grupo = c("Grupo 1", "Grupo 2", "Grupo 2", "Grupo 2", "Grupo 3", "Grupo 3", 
+            "Grupo 3", "Grupo 3", "Grupo 3", "Grupo 3", "Grupo 4", "Grupo 4", 
+            "Grupo 4", "Grupo 4"),
+  Municipios = c("Teófilo Otoni", "Araçuaí", "Capelinha", "Salinas", "Itaobim", 
+                 "Malacacheta", "Medina", "Minas Novas", "Pedra Azul", "Turmalina", 
+                 "Coronel Murta", "Itinga", "Rubelita", "Virgem da Lapa"),
+  Distancia_Km = c(0, 0, 0, 0, 455, 271, 326, 61, 87, 195, 244, 301, 37, 253),
+  Aeroporto = c("Aeroporto Kemil Kumaira", "Aeroporto Municipal de Araçuaí SNUI", 
+                "Aeroporto Doutor Juscelino José Ribeiro", "Aeroporto de Salinas", 
+                "Aeroporto de Montes Claros - Mário Ribeiro", "Aeroporto de Caratinga", 
+                "Aeroporto de Montes Claros - Mário Ribeiro", "Aeroporto Doutor Juscelino José Ribeiro", 
+                "Aeroporto de Almenara", "Aeroporto de Montes Claros - Mário Ribeiro", 
+                "Aeroporto de Montes Claros - Mário Ribeiro", "Aeroporto de Montes Claros - Mário Ribeiro", 
+                "Aeroporto de Salinas", "Aeroporto de Montes Claros - Mário Ribeiro")
+)
+
+library(gt)
+
+# Criando a tabela utilizando gt
+ municipios_data %>%
+  gt() %>%
+  tab_header(
+    title = "Distância dos Municípios aos Aeroportos Mais Próximos"
+  ) %>%
+  cols_label(
+    Grupo = "Grupo",
+    Municipios = "Municípios",
+    Distancia_Km = "Distância (Km)",
+    Aeroporto = "Aeroporto Mais Próximo"
+  ) %>%
+  tab_options(
+    data_row.padding = px(6),
+    heading.align = 'left',
+    column_labels.background.color = 'dodgerblue4',
+    heading.title.font.size = px(26)
+  ) %>%
+  tab_style(
+    style = cell_text(color = 'dodgerblue4', weight = 'bold'),
+    locations = cells_title(groups = 'title')
+  ) %>%
+  tab_source_note(source_note = md("Fonte: Pesquisa local e dados aeroportuários."))
+
+
+```
