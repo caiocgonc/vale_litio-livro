@@ -116,35 +116,10 @@ df <- data.frame(
 df_long <- df %>%
   gather(key = "Taxa_de_Crescimento", value = "Valor", -Codigo_do_municipio, -Nome_do_municipio)
 
-
-
-```
-
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
-
-colors <- c("#296111","#084d8c", "#e07a10" )
-
-# Gráfico de barras horizontais
-ggplot(df_long, aes(x = Valor, y = Nome_do_municipio, fill = Taxa_de_Crescimento)) +
-  geom_bar(stat = "identity") +
-  scale_fill_manual(values = colors, name = "Tipo de Crescimento", 
-                    labels = c("Rural", "Total", "Urbana")) +  # Define as cores manualmente
-  geom_text(aes(label = sprintf("%.1f", Valor)), hjust = -0.2, size = 2.5, color = "black") +  # Formata os valores para dois dígitos
-  labs(title = "Taxa de Crescimento Total, Urbana e Rural",
-       subtitle = "Municípios do Vale do Lítio - 2000 e 2010",
-       x = "Taxa de Crescimento (%)",
-       y = "Nome do Município",
-       fill = "Tipo de Crescimento") +
-  theme(legend.position = "top",  # Posiciona a legenda no topo
-        legend.title = element_blank())+
-  theme_minimal()
-```
-
-Fonte: IBGE/Censo Demográficos 2000-2010. Elaboração: FJP/Diretoria de Estatística e Informações
-
-```{r}
 library(ggplot2)
 library(dplyr)
+colors <- c("#296111","#084d8c", "#e07a10" )
+
 
 # Ajusta hjust, xpos e a omissão de rótulos para valores pequenos
 adjust_text <- function(df, threshold = 0.5) {
@@ -177,6 +152,14 @@ ggplot(df_long, aes(x = Valor, y = Nome_do_municipio, fill = Taxa_de_Crescimento
         plot.subtitle = element_text(size = 10),
         plot.caption = element_text(hjust = 1, face = "italic", size = 8)) +  # Alinha a fonte à direita
   theme_minimal()
+
+
+
+```
+
+Fonte: IBGE/Censo Demográficos 2000-2010. Elaboração: FJP/Diretoria de Estatística e Informações
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
 
 
 ```

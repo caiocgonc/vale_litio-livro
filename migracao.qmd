@@ -104,7 +104,8 @@ Esses resultados estão diretamente relacionados ao fator migratório, que, por 
 
 Em 2010, os únicos municípios da região com baixa participação da população rural no total foram Pedra Azul (12%) e Teófilo Otoni (18%). Por outro lado, em quatro municípios, as participações das populações rurais eram iguais ou superiores a 50%: Rubelita (68%), Minas Novas (59%), Itinga (55%) e Virgem da Lapa (50%). Não por coincidência, esses municípios foram os que apresentaram as maiores taxas de crescimento negativas entre 2010 e 2022. Os dados de 2010 indicavam que esses municípios entraram no período de 2010 a 2022 com estoques bastante expressivos de população rural. Mesmo que as taxas de crescimento da população urbana tenham sido consideráveis, elas não foram e não são suficientes para absorver os fluxos migratórios no sentido rural/urbano. Tanto é verdade que as taxas de crescimento total dos municípios, como já mencionado, não refletem o tamanho desses fluxos, sendo muito baixas ou negativas. Isso sugere que os setores urbanos desses municípios não são capazes de absorver a pressão rural e acabam servindo apenas como uma etapa no processo migratório uma vez iniciado.
 
-```{r,  echo=FALSE, warning=FALSE, message=FALSE}
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+
 # Load required libraries
 library(ggplot2)
 library(dplyr)
@@ -116,34 +117,50 @@ df <- data.frame(
   Tx_cresc_total = c(0.091465916, 1.086775428, -0.018627386, -0.12766431, 0.363229157, -0.243163073, -0.282668453, 0.051112455, 0.099099427, -2.674767312, 0.65106922, 0.402821212, 1.431486009, -0.034430124),
   Tx_cresc_urbana = c(1.364187441, 2.119736324, 0.328586304, -0.186301588, 1.338527461, 0.79639783, 0.414456913, 4.998869616, 0.44255029, -0.019851123, 1.573417026, 0.683470148, 2.428755062, 1.521592623),
   Tx_cresc_rural = c(-1.883449123, -1.049551393, -0.913587185, 0.051851896, -0.377866564, -1.775126879, -1.847433544, -2.270817169, -2.097472014, -3.709815378, -2.078243178, -0.753270432, -0.682780443, -1.373411452)
-) 
+)
 
 # Transform data
 df_long <- df %>%
   gather(key = "Taxa_de_Crescimento", value = "Valor", -Codigo_do_municipio, -Nome_do_municipio)
 
 
-
-```
-
-```{r, echo=FALSE, warning=FALSE, message=FALSE}
-
 colors <- c("#296111","#084d8c", "#e07a10" )
 
-# Gráfico de barras horizontais
+
+# Ajusta hjust, xpos e a omissão de rótulos para valores pequenos
+adjust_text <- function(df, threshold = 0.5) {
+  df <- df %>%
+    mutate(
+      hjust = ifelse(Valor > 0, 0.5, 0.5),  # Centraliza os rótulos
+      xpos = ifelse(Valor > 0, Valor * 0.9, Valor * 1.1),  # Ajusta para manter dentro das barras
+      label = ifelse(abs(Valor) < threshold, "", sprintf("%.1f", Valor))  # Omitindo valores pequenos
+    )
+  return(df)
+}
+
+# Prepara os dados para os rótulos
+df_text <- adjust_text(df_long, 0.3)  # Ajusta o threshold se necessário
+
+# Cria o gráfico
 ggplot(df_long, aes(x = Valor, y = Nome_do_municipio, fill = Taxa_de_Crescimento)) +
-  geom_bar(stat = "identity") +
+  geom_bar(stat = "identity", position = position_dodge(width = 1.5), width = 1.5) +
   scale_fill_manual(values = colors, name = "Tipo de Crescimento", 
-                    labels = c("Rural", "Total", "Urbana")) +  # Define as cores manualmente
-  geom_text(aes(label = sprintf("%.1f", Valor)), hjust = -0.2, size = 2.5, color = "black") +  # Formata os valores para dois dígitos
+                    labels = c("Rural", "Total", "Urbana")) +
+  geom_text(data = df_text, aes(x = xpos, label = label, hjust = hjust), size = 2, color = "black", position = position_dodge(width = 1.5)) +
   labs(title = "Taxa de Crescimento Total, Urbana e Rural",
-       subtitle = "municípios do Vale do Jequitinhonha selecionados - 2000 e 2010",
+       subtitle = "Municípios do Vale do Lítio - 2000 e 2010",
        x = "Taxa de Crescimento (%)",
        y = "Nome do Município",
-       fill = "Tipo de Crescimento") +
-  theme(legend.position = "top",  # Posiciona a legenda no topo
-        legend.title = element_blank())+
+       fill = "Tipo de Crescimento",
+       caption = "Fonte: IBGE - Censo Demográficos 2000-2010") +
+  theme(legend.position = "top",
+        legend.title = element_blank(),
+        plot.subtitle = element_text(size = 10),
+        plot.caption = element_text(hjust = 1, face = "italic", size = 8)) +  # Alinha a fonte à direita
   theme_minimal()
+
+
+
 ```
 
 Fonte: @ibge2023_idade. Censo Demográficos 2000-2010. Elaboração: FJP/Diretoria de Estatística e Informações
