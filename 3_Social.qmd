@@ -832,3 +832,68 @@ df_saneamento <- data.frame(
   ) %>%
   tab_source_note(source_note = md("Fonte: IBGE. Elaboração: Diretoria de Estatística e Informações."))
 ```
+Por sua vez a conexão dos domicílios à rede de saneamento básico nos municípios mostra uma grande disparidade entre eles, com variações significativas na eficiência do acesso à infraestrutura de saneamento.
+
+No Grupo 1, Teófilo Otoni apresenta a melhor performance com 78,84% de seus domicílios conectados à rede geral de saneamento. Este número indica uma infraestrutura razoavelmente bem desenvolvida e sugere que a maior parte da população tem acesso a serviços básicos de saneamento, embora ainda haja espaço para melhorias.
+
+No Grupo 2, Capelinha e Salinas apresentam taxas de conexão de 76,44% e 73,56%, respectivamente. Essas taxas são relativamente altas, mas ainda indicam a necessidade de expansão e melhoria dos serviços para alcançar maior cobertura. A presença de fossas rudimentares e outras soluções alternativas em um número considerável de domicílios aponta para áreas onde o serviço público ainda não chegou ou é inadequado.
+
+O Grupo 3 mostra uma maior variação, com Pedra Azul destacando-se com uma taxa de conexão de 83,58%, uma das mais altas entre os municípios analisados. Em contraste, Minas Novas enfrenta sérios desafios, com apenas 30,52% de conexão, indicando uma deficiência significativa na infraestrutura de saneamento.
+
+Os municípios do Grupo 4, especialmente Coronel Murta, Itinga, e Rubelita, mostram as menores taxas de conexão, com 48,89%, 51,48%, e 20,75%, respectivamente. Essas taxas extremamente baixas refletem a falta de acesso a serviços básicos de saneamento, com uma grande proporção de domicílios utilizando fossas rudimentares ou outras soluções precárias.
+
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Criar o data frame
+df_esgoto <- data.frame(
+  Grupo = c("Grupo 1", "Grupo 2", "Grupo 2", "Grupo 3", "Grupo 3", "Grupo 3", "Grupo 3", "Grupo 3",
+            "Grupo 4", "Grupo 4", "Grupo 4", "Grupo 4"),
+  Municipios = c("Teófilo Otoni", "Capelinha", "Salinas", "Malacacheta", "Medina", "Minas Novas",
+                 "Pedra Azul", "Turmalina", "Coronel Murta", "Itinga", "Rubelita", "Virgem da Lapa"),
+  Total = c(49858, 14149, 14892, 6424, 7244, 8231, 7450, 7436, 2882, 4573, 2120, 4327),
+  Rede_Geral_Rede_Pluvial_Fossa_Ligada = c(39307, 10816, 10955, 4353, 5210, 2512, 6227, 5231, 1409, 2354, 440, 2491),
+  Fossa_Septica_Filtro_Nao_Ligada = c(844, 457, 567, 384, 148, 737, 102, 294, 380, 787, 36, 247),
+  Fossa_Rudimentar_Buraco = c(6916, 2704, 3038, 1539, 1688, 4761, 944, 1864, 893, 1181, 1459, 1340),
+  Outros = c(2791, 172, 332, 148, 198, 221, 177, 47, 200, 251, 185, 249),
+  Rede_Geral_Rede_Pluvial_Fossa_Ligada_Perc = c(78.84, 76.44, 73.56, 67.76, 71.92, 30.52, 83.58, 70.35, 48.89, 51.48, 20.75, 57.57),
+  Ranking = c(250, 295, 339, 412, 361, 756, 175, 379, 623, 599, 789, 534)
+)
+
+# Criando a tabela usando o pacote gt
+ df_esgoto %>%
+  gt() %>%
+  tab_header(
+    title = "Conexão dos domicílios à rede de saneamento"
+  ) %>%
+  fmt_number(
+    columns = vars(Total, Rede_Geral_Rede_Pluvial_Fossa_Ligada, Fossa_Septica_Filtro_Nao_Ligada, Fossa_Rudimentar_Buraco, Outros, Rede_Geral_Rede_Pluvial_Fossa_Ligada_Perc),
+    decimals = 2,
+    dec_mark = ',',
+    sep_mark = '.'
+  ) %>%
+  tab_style(
+    style = cell_text(size = "smaller"),
+    locations = cells_body(columns = vars(Total, Rede_Geral_Rede_Pluvial_Fossa_Ligada, Fossa_Septica_Filtro_Nao_Ligada, Fossa_Rudimentar_Buraco, Outros, Rede_Geral_Rede_Pluvial_Fossa_Ligada_Perc))
+  ) %>%
+  tab_options(
+    data_row.padding = px(6),
+    heading.align = 'left',
+    column_labels.background.color = 'dodgerblue4',
+    heading.title.font.size = px(26)
+  ) %>%
+  tab_style(
+    style = cell_text(color = 'dodgerblue4', weight = 'bold'),
+    locations = cells_title(groups = 'title')
+  ) %>%
+  cols_label(
+    Total = 'Total de Domicílios',
+    Rede_Geral_Rede_Pluvial_Fossa_Ligada = 'Ligação à Rede Geral/Pluvial/Fossa',
+    Fossa_Septica_Filtro_Nao_Ligada = 'Fossa Séptica/Filtro não Ligada',
+    Fossa_Rudimentar_Buraco = 'Fossa Rudimentar/Buraco',
+    Outros = 'Outros',
+    Rede_Geral_Rede_Pluvial_Fossa_Ligada_Perc = '% de Conexão à Rede Geral'
+  ) %>%
+  tab_source_note(source_note = md("Fonte: IBGE. Elaboração: Diretoria de Estatística e Informações."))
+
+```
+
