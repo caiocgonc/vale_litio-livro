@@ -150,10 +150,11 @@ tabela00_social <- tabela00_social %>%
   tab_style(
     style = cell_text(color = 'dodgerblue4', weight = 'bold', font = google_font('Merriweather')),
     locations = cells_title(groups = 'title')
+  )  %>% 
+  tab_source_note(
+    source_note = md("Fonte: FJP. 2020. Elaboração: FJP/Diretoria de Estatística e Informações. ")
   )
 ```
-
-Fonte: @fjp2020imrs . Elaboração: FJP/Diretoria de Estatística e Informações.
 
 ### GINI
 
@@ -249,7 +250,7 @@ names(df_gini)[names(df_gini) == "X2010"] <- "IDHM_2010"
 df_idhm %>% 
   gt() %>%
   tab_header(
-    title = "GINI"
+    title = "IDHM"
   ) %>%
   fmt_number(
     columns = vars(IDHM.1991:IDHM.2010),
