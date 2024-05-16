@@ -100,31 +100,15 @@ tabela00_social <- left_join(imrs,df_nome) %>%
   select(-ibge7, -Municipio,-imrs_2020, -imrs_educ_2020, -imrs_vuln_2020,
          -imrs_saude_2020, -imrs_seg_2020, -imrs_saneam_2020, -vale_do_litio)
 
-tabela00_social  %>% 
-  group_by(Grupo) %>% 
-  gt() %>% 
+
+tabela00_social %>%
+  group_by(Grupo) %>%
+  mutate(is_carente = ranking_imrs >= quantile(ranking_imrs, 0.7)) %>%
+  ungroup() %>%
+  gt() %>%
   tab_header(
     title = "Ranking do IMRS geral e por dimensões",
     subtitle = md("Municípios do Vale do Lítio - 2020")
-  )%>%
-  opt_align_table_header(align = "left") %>%
-  tab_stubhead(label = md("Region and <br />IAP Type")) %>%
-  tab_style(
-    style = cell_text(size = "smaller"),
-    locations = cells_body()
-  )  %>% #rótulo
-  opt_table_font(font = google_font(name = "Karla")) %>% 
-  tab_options(data_row.padding = px(6),
-              heading.align = 'left',
-              column_labels.background.color = 'dodgerblue4',
-              heading.title.font.size = px(20)) %>% 
-  tab_style(
-    style = cell_text(
-      color = 'dodgerblue4', 
-      weight = 'bold', 
-      font = google_font('Merriweather')
-    ),
-    locations = cells_title(groups = 'title')
   ) %>%
   cols_label(
     Nome_munic= 'Município',
@@ -133,13 +117,29 @@ tabela00_social  %>%
     ranking_imrs_saude = 'Ranking IMRS Saúde',
     ranking_imrs_seguranca = 'Ranking IMRS Segurança',
     ranking_imrs_vulnerabilidade = 'Ranking IMRS Vulnerabilidade',
-    ranking_imrs_saneamento = 'Ranking IMRS Saneamento'
-  )   %>% 
+    ranking_imrs_saneamento = 'Ranking IMRS Saneamento',
+    is_carente = '30% Mais Carentes'
+  ) %>%
+  tab_style(
+    style = cell_fill(color = "lightcoral"),
+    locations = cells_body(vars(is_carente), rows = is_carente)
+  ) %>%
   data_color(
-    columns = c(2:8),
+    columns = vars(ranking_imrs, ranking_imrs_educacao, ranking_imrs_saude, ranking_imrs_seguranca, ranking_imrs_vulnerabilidade, ranking_imrs_saneamento),
     colors = my_pal
-      )
-
+  ) %>%
+  opt_align_table_header(align = "left") %>%
+  opt_table_font(font = google_font(name = "Karla")) %>%
+  tab_options(data_row.padding = px(6), heading.align = 'left', column_labels.background.color = 'dodgerblue4', heading.title.font.size = px(20)) %>%
+  tab_stubhead(label = md("Region and <br />IAP Type")) %>%
+  tab_style(
+    style = cell_text(size = "smaller"),
+    locations = cells_body()
+  ) %>%
+  tab_style(
+    style = cell_text(color = 'dodgerblue4', weight = 'bold', font = google_font('Merriweather')),
+    locations = cells_title(groups = 'title')
+  ) 
 ```
 
 Fonte: @fjp2020imrs . Elaboração: FJP/Diretoria de Estatística e Informações.
@@ -235,20 +235,20 @@ names(df_gini)[names(df_gini) == "X2000"] <- "IDHM_2000"
 names(df_gini)[names(df_gini) == "X2010"] <- "IDHM_2010"
 
 # tabela
-df_gini %>% 
+df_idhm %>% 
   gt() %>%
   tab_header(
     title = "GINI"
   ) %>%
   fmt_number(
-    columns = vars(IDHM_1991:IDHM_2010),
+    columns = vars(IDHM.1991:IDHM.2010),
     decimals = 2,
     dec_mark = ',',
     sep_mark = '.'
   ) %>%
   tab_style(
     style = cell_text(size = "smaller"),
-    locations = cells_body(columns = vars(IDHM_1991:IDHM_2010))
+    locations = cells_body(columns = vars(IDHM.1991:IDHM.2010))
   ) %>%
   tab_options(
     data_row.padding = px(6),
@@ -260,9 +260,10 @@ df_gini %>%
     style = cell_text(color = 'dodgerblue4', weight = 'bold'),
     locations = cells_title(groups = 'title')
   ) %>%
-  cols_label(IDHM_1991 = '1991',
-             IDHM_2000 = '2000',
-             IDHM_2010 = '2010')  %>%
+  cols_label(IDHM.1991 = '1991',
+             IDHM.2000 = '2000',
+             IDHM.2010 = '2010',
+             Ranking.2010 = 'Ranking 2010')  %>%
   tab_source_note(source_note = md("Fonte: PNUD. Elaboração: FJP/Diretoria de Estatística e Informações. "))
 
 
@@ -271,7 +272,7 @@ df_gini %>%
 
 ### Taxa de analfabetismo
 
-```{r}
+```{r,  echo=FALSE, warning=FALSE, message=FALSE}
 # Criar o data frame
 df_analfabetismo <- data.frame(
   Municipios = c("Teófilo Otoni", "Araçuaí", "Capelinha", "Salinas", "Itaobim", "Malacacheta",
