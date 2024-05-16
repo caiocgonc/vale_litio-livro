@@ -330,6 +330,18 @@ Fonte: @censo2022superior. Elaboração: FJP/Diretoria de Estatística e Informa
 
 ### Aeroportos
 
+A distância dos municípios aos aeroportos mais próximos é um indicativo relevante de acessibilidade e pode ter implicações significativas para o desenvolvimento econômico e a integração regional dos municípios.
+
+Nos Grupos 1 e 2, observa-se uma vantagem considerável em termos de acessibilidade, pois todos os municípios mencionados possuem aeroportos diretamente em suas localidades, o que implica distância zero. Isso oferece vantagens imediatas em termos de transporte e logística, potencialmente atraindo mais negócios, turismo e serviços para essas regiões. A presença de aeroportos nos municípios de Teófilo Otoni, Araçuaí, Capelinha e Salinas é um ativo importante que pode facilitar o crescimento econômico e melhorar a qualidade de vida dos habitantes.
+
+No entanto, para os municípios nos Grupos 3 e 4, a situação é mais desafiadora. Municípios como Itaobim, com uma distância de 455 km até o aeroporto mais próximo em Montes Claros, enfrentam barreiras significativas em termos de acessibilidade e conectividade. Isso pode limitar as oportunidades de desenvolvimento, reduzindo o potencial para negócios que dependem de transporte rápido e eficiente.
+
+Municípios como Minas Novas, Pedra Azul e Rubelita têm distâncias menores (61 km, 87 km e 37 km, respectivamente), o que sugere uma melhor conexão em comparação com outros municípios do mesmo grupo, como Medina e Malacacheta, que estão a mais de 270 km de distância dos seus aeroportos mais próximos. Essas distâncias intermediárias podem oferecer algumas oportunidades, mas ainda representam desafios logísticos.
+
+Por fim, os municípios de Coronel Murta, Itinga e Virgem da Lapa, todos com distâncias superiores a 240 km até o Aeroporto de Montes Claros, enfrentam limitações similares, o que pode dificultar o acesso a serviços e oportunidades fora da região.
+
+Essa distribuição de distâncias aos aeroportos mais próximos destaca a desigualdade regional em termos de infraestrutura de transporte e sublinha a necessidade de políticas públicas que melhorem a conectividade dos municípios mais distantes para promover o desenvolvimento equilibrado e sustentável.
+
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # Criar o data frame
 municipios_data <- data.frame(
