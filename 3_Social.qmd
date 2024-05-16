@@ -100,29 +100,35 @@ tabela00_social <- left_join(imrs,df_nome) %>%
   select(-ibge7, -Municipio,-imrs_2020, -imrs_educ_2020, -imrs_vuln_2020,
          -imrs_saude_2020, -imrs_seg_2020, -imrs_saneam_2020, -vale_do_litio)
 
-
-tabela00_social %>%
+### Marcar os os 30% mais carentes na tabela do IMRS
+tabela00_social <- tabela00_social %>%
   group_by(Grupo) %>%
   mutate(is_carente = ranking_imrs >= quantile(ranking_imrs, 0.7)) %>%
-  ungroup() %>%
+  ungroup()
+
+
+ tabela00_social %>%
+  select(-is_carente) %>%  # Removendo a coluna 'is_carente' antes de passar para gt()
   gt() %>%
   tab_header(
     title = "Ranking do IMRS geral e por dimensões",
     subtitle = md("Municípios do Vale do Lítio - 2020")
   ) %>%
   cols_label(
-    Nome_munic= 'Município',
+    Nome_munic = 'Município',
     ranking_imrs = 'Ranking IMRS',
     ranking_imrs_educacao = 'Ranking IMRS Educação',
     ranking_imrs_saude = 'Ranking IMRS Saúde',
     ranking_imrs_seguranca = 'Ranking IMRS Segurança',
     ranking_imrs_vulnerabilidade = 'Ranking IMRS Vulnerabilidade',
-    ranking_imrs_saneamento = 'Ranking IMRS Saneamento',
-    is_carente = '30% Mais Carentes'
+    ranking_imrs_saneamento = 'Ranking IMRS Saneamento'
   ) %>%
   tab_style(
     style = cell_fill(color = "lightcoral"),
-    locations = cells_body(vars(is_carente), rows = is_carente)
+    locations = cells_body(
+      columns = vars(ranking_imrs),
+      rows = tabela00_social$is_carente
+    )
   ) %>%
   data_color(
     columns = vars(ranking_imrs, ranking_imrs_educacao, ranking_imrs_saude, ranking_imrs_seguranca, ranking_imrs_vulnerabilidade, ranking_imrs_saneamento),
@@ -130,7 +136,12 @@ tabela00_social %>%
   ) %>%
   opt_align_table_header(align = "left") %>%
   opt_table_font(font = google_font(name = "Karla")) %>%
-  tab_options(data_row.padding = px(6), heading.align = 'left', column_labels.background.color = 'dodgerblue4', heading.title.font.size = px(20)) %>%
+  tab_options(
+    data_row.padding = px(6),
+    heading.align = 'left',
+    column_labels.background.color = 'dodgerblue4',
+    heading.title.font.size = px(20)
+  ) %>%
   tab_stubhead(label = md("Region and <br />IAP Type")) %>%
   tab_style(
     style = cell_text(size = "smaller"),
@@ -139,7 +150,7 @@ tabela00_social %>%
   tab_style(
     style = cell_text(color = 'dodgerblue4', weight = 'bold', font = google_font('Merriweather')),
     locations = cells_title(groups = 'title')
-  ) 
+  )
 ```
 
 Fonte: @fjp2020imrs . Elaboração: FJP/Diretoria de Estatística e Informações.
