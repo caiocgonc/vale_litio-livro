@@ -269,6 +269,55 @@ df_gini %>%
 
 ```
 
+### Taxa de analfabetismo
+
+```{r}
+# Criar o data frame
+df_analfabetismo <- data.frame(
+  Municipios = c("Teófilo Otoni", "Araçuaí", "Capelinha", "Salinas", "Itaobim", "Malacacheta",
+                 "Medina", "Minas Novas", "Pedra Azul", "Turmalina", "Coronel Murta", "Itinga", 
+                 "Rubelita", "Virgem da Lapa"),
+  `Censo Demográfico 2000` = c(18.35, 23.66, 26.70, 23.85, 26.73, 31.88, 29.78, 33.53, 27.88, 22.53, 23.76, 31.02, 28.96, 27.75),
+  `Censo Demográfico 2010` = c(12.95, 17.35, 18.94, 17.28, 20.96, 25.22, 22.45, 23.00, 20.10, 14.94, 19.75, 22.18, 24.43, 22.18),
+  `CadÚnico 2014` = c(14.70, 9.31, 13.68, 10.08, 15.37, 18.17, 13.14, 21.03, 16.30, 6.74, 13.63, 12.93, 15.40, 13.04),
+  `CadÚnico 2021` = c(12.66, 7.53, 12.44, 10.50, 14.64, 17.55, 10.83, 16.32, 18.57, 7.27, 12.31, 12.11, 12.11, 9.43)
+)
+
+# Printar o data frame
+df_analfabetismo %>%
+  gt() %>%
+  tab_header(
+    title = "Taxa de analfabetismo da população de 15 anos ou mais"
+  ) %>%
+  fmt_number(
+    columns = vars(Censo.Demográfico.2000:CadÚnico.2021),
+    decimals = 2,
+    dec_mark = ',',
+    sep_mark = '.'
+  ) %>%
+  tab_style(
+    style = cell_text(size = "smaller"),
+    locations = cells_body(columns = vars(Censo.Demográfico.2000:CadÚnico.2021))
+  ) %>%
+  tab_options(
+    data_row.padding = px(6),
+    heading.align = 'left',
+    column_labels.background.color = 'dodgerblue4',
+    heading.title.font.size = px(26)
+  ) %>%
+  tab_style(
+    style = cell_text(color = 'dodgerblue4', weight = 'bold'),
+    locations = cells_title(groups = 'title')
+  ) %>%
+  cols_label(Censo.Demográfico.2000 = 'Censo 2000',
+             Censo.Demográfico.2010 = 'Censo 2010',
+             CadÚnico.2014 = 'CadÚnico 2014',
+             CadÚnico.2021 = 'CadÚnico 2021')  %>%
+  tab_source_note(source_note = md("Fonte: IBGE/CadUnico. Elaboração: FJP/Diretoria de Estatística e Informações. "))
+
+
+```
+
 ## O que revelam os principais indicadores da área da educação, saúde, assistência social, segurança pública e saneamento básico?
 
 ### Educação
