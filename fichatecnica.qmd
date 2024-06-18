@@ -36,6 +36,8 @@ Caio Gonçalves
 
 <br>
 
+
+### Organizadores e autores
 **Organizadores**
 
 Caio Gonçalves
@@ -62,22 +64,26 @@ Vitor Marinho
 
 Os textos produzidos contaram com revisões e comentários de Renato Vale, Cláudio Costa e Cláudio Shikida.
 
-**Capa**
+<!-- **Capa** -->
 
-\[\]
+<!-- \[\] -->
 
-**Revisão**
+<!-- **Revisão** -->
 
-\[\]
+<!-- \[\] -->
 
-**Normalização**
+<!-- **Normalização** -->
 
-\[\]
+<!-- \[\] -->
 
-### Detalhes do livro
+<!-- ### Detalhes do livro -->
 
--   **Tipo:** eBook
+<!-- -   **Tipo:** eBook -->
 
--   **ISBN:** \[solicitar\]
+<!-- <!-- -   **ISBN:** \[solicitar\] --> 
 
--   **Ano da Edição:** 2024
+<!-- -   **Ano da Edição:** 2024 -->
+
+### Sugestão de citação
+
+Gonçalves, Caio; Marinho, Vitor (org.). **Exploração do Lítio no Vale do Jequitinhonha: Características Demográficas e Sociais dos Municípios Potenciais**. Belo Horizonte: Fundação João Pinheiro, Diretoria de Estatística e Informações, 2024.

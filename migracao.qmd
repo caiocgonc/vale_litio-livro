@@ -1,5 +1,5 @@
 ---
-title: "Migração"
+title: "Movimentos migratórios com o Censo Demográfico até 2010"
 editor: visual
 authors: 
 - Olinto Nogueira
@@ -62,7 +62,7 @@ tabela01_fluxo <- vale_litio_data %>%
   gt() %>%
   tab_header(
     title = "População residente e taxas de crescimento anual",
-    subtitle = "municípios do Vale do Jequitinhonha selecionados - 2000, 2010 e 2022",
+    subtitle = "Municípios do Vale do Jequitinhonha selecionados - 2000, 2010 e 2022",
   ) %>%
   opt_align_table_header(align = "left") %>%
   tab_stubhead(label = "Municípios") %>%
@@ -148,7 +148,7 @@ ggplot(df_long, aes(x = Valor, y = Nome_do_municipio, fill = Taxa_de_Crescimento
                     labels = c("Rural", "Total", "Urbana")) +
   geom_text(data = df_text, aes(x = xpos, label = label, hjust = hjust), size = 2, color = "black", position = position_dodge(width = 1.5)) +
   labs(title = "Taxa de Crescimento Total, Urbana e Rural",
-       subtitle = "Municípios do Vale do Lítio - 2000 e 2010",
+       subtitle = "Municípios do Vale do Jequitinhonha selecionados - 2000 e 2010",
        x = "Taxa de Crescimento (%)",
        y = "Nome do Município",
        fill = "Tipo de Crescimento",

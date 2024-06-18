@@ -1,5 +1,5 @@
 ---
-title: "Aspectos sociais"
+title: "Aspectos sociais à luz do Índice Mineiro de Responsabilidade Social"
 editor: visual
 authors: 
 - Caio Gonçalves 
@@ -832,6 +832,7 @@ df_saneamento <- data.frame(
   ) %>%
   tab_source_note(source_note = md("Fonte: IBGE. Elaboração: Diretoria de Estatística e Informações."))
 ```
+
 Por sua vez a conexão dos domicílios à rede de saneamento básico nos municípios mostra uma grande disparidade entre eles, com variações significativas na eficiência do acesso à infraestrutura de saneamento.
 
 No Grupo 1, Teófilo Otoni apresenta a melhor performance com 78,84% de seus domicílios conectados à rede geral de saneamento. Este número indica uma infraestrutura razoavelmente bem desenvolvida e sugere que a maior parte da população tem acesso a serviços básicos de saneamento, embora ainda haja espaço para melhorias.
@@ -841,7 +842,6 @@ No Grupo 2, Capelinha e Salinas apresentam taxas de conexão de 76,44% e 73,56%,
 O Grupo 3 mostra uma maior variação, com Pedra Azul destacando-se com uma taxa de conexão de 83,58%, uma das mais altas entre os municípios analisados. Em contraste, Minas Novas enfrenta sérios desafios, com apenas 30,52% de conexão, indicando uma deficiência significativa na infraestrutura de saneamento.
 
 Os municípios do Grupo 4, especialmente Coronel Murta, Itinga, e Rubelita, mostram as menores taxas de conexão, com 48,89%, 51,48%, e 20,75%, respectivamente. Essas taxas extremamente baixas refletem a falta de acesso a serviços básicos de saneamento, com uma grande proporção de domicílios utilizando fossas rudimentares ou outras soluções precárias.
-
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # Criar o data frame
@@ -896,4 +896,3 @@ df_esgoto <- data.frame(
   tab_source_note(source_note = md("Fonte: IBGE. Elaboração: Diretoria de Estatística e Informações."))
 
 ```
-

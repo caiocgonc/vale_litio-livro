@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="pt" xml:lang="pt"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.450">
+<meta name="generator" content="quarto-1.4.555">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title> Vale do Jequitinhonha - 1&nbsp; População</title>
+<title> Exploração do Lítio no Vale do Jequitinhonha - 1&nbsp; População e estrutura etária com o Censo Demográfico de 2022</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,6 +24,7 @@ ul.task-list li input[type="checkbox"] {
 div.csl-bib-body { }
 div.csl-entry {
   clear: both;
+  margin-bottom: 0em;
 }
 .hanging-indent div.csl-entry {
   margin-left:2em;
@@ -65,7 +66,12 @@ div.csl-indent {
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
   "language": {
     "search-no-results-text": "Nenhum resultado",
     "search-matching-documents-text": "documentos correspondentes",
@@ -74,6 +80,7 @@ div.csl-indent {
     "search-more-match-text": "mais correspondência neste documento",
     "search-more-matches-text": "mais correspondências neste documento",
     "search-clear-button-title": "Limpar",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancelar",
     "search-submit-button-title": "Enviar",
     "search-label": "Procurar"
@@ -83,6 +90,33 @@ div.csl-indent {
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 </head>
 
 <body class="nav-sidebar floating">
@@ -91,12 +125,12 @@ div.csl-indent {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./populacao.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">População</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./populacao.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">População e estrutura etária com o Censo Demográfico de 2022</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Alternar barra lateral" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
@@ -106,10 +140,10 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./"><img src="img/logo_fjp.png" alt="Logo" style="vertical-align: middle; width:180px"> Vale do Jequitinhonha</a> 
+      <a href="./"><img src="img/logo_fjp.png" alt="Logo" style="fig-align=center; width:100px"> Exploração do Lítio no Vale do Jequitinhonha</a> 
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -127,7 +161,7 @@ div.csl-indent {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./autoridades.html" class="sidebar-item-text sidebar-link">
+  <a href="./fichatecnica.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Ficha Técnica</span></a>
   </div>
 </li>
@@ -140,49 +174,43 @@ div.csl-indent {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./populacao.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">População</span></span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">População e estrutura etária com o Censo Demográfico de 2022</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./migracao.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Migração</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Movimentos migratórios com o Censo Demográfico até 2010</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./temp2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Migração com CadÚnico</span></span></a>
+  <a href="./cadunico.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Utilizando o CadÚnico para os estudos de migração no período recente</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./temp3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Caso Aracuaí</span></span></a>
+  <a href="./migracaoaracuai.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Os fluxos migratórios de Aracuaí com o Censo Demográfico de 2010</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./2_Economia.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Produção e emprego</span></span></a>
+  <a href="./economia.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Produção, exportações e o emprego</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./3_Social.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Aspectos sociais</span></span></a>
+  <a href="./social.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Aspectos sociais à luz do Índice Mineiro de Responsabilidade Social</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./3a_equipamentos_publicos.html" class="sidebar-item-text sidebar-link">
+  <a href="./equipamentos.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Equipamentos de saúde e educação</span></span></a>
-  </div>
-</li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./5_Acoes.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Ações prioritárias para o desenvolvimento</span></span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -194,7 +222,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -211,7 +239,7 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">População</span></h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">População e estrutura etária com o Censo Demográfico de 2022</span></h1>
 </div>
 
 
@@ -231,7 +259,9 @@ div.csl-indent {
   </div>
   
 
+
 </header>
+
 
 <div class="cell">
 <style type="text/css">
@@ -258,26 +288,25 @@ p {
 <p>Em um cenário de desaceleração do crescimento populacional experimentado pelo país, é notável que a diminuição da população, antes mais evidente nos municípios menores, está se tornando progressivamente perceptível também nos municípios de maior porte <span class="citation" data-cites="ibge2023_primeiros">IBGE (<a href="references.html#ref-ibge2023_primeiros" role="doc-biblioref">2023a</a>)</span>.</p>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="jioxdsllqv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ntrwoqxpjh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#jioxdsllqv table {
+#ntrwoqxpjh table {
   font-family: Karla, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#jioxdsllqv thead, #jioxdsllqv tbody, #jioxdsllqv tfoot, #jioxdsllqv tr, #jioxdsllqv td, #jioxdsllqv th {
+#ntrwoqxpjh thead, #ntrwoqxpjh tbody, #ntrwoqxpjh tfoot, #ntrwoqxpjh tr, #ntrwoqxpjh td, #ntrwoqxpjh th {
   border-style: none;
 }
 
-#jioxdsllqv p {
+#ntrwoqxpjh p {
   margin: 0;
   padding: 0;
 }
 
-#jioxdsllqv .gt_table {
+#ntrwoqxpjh .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -303,12 +332,12 @@ p {
   border-left-color: #D3D3D3;
 }
 
-#jioxdsllqv .gt_caption {
+#ntrwoqxpjh .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#jioxdsllqv .gt_title {
+#ntrwoqxpjh .gt_title {
   color: #333333;
   font-size: 20px;
   font-weight: initial;
@@ -320,7 +349,7 @@ p {
   border-bottom-width: 0;
 }
 
-#jioxdsllqv .gt_subtitle {
+#ntrwoqxpjh .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -332,7 +361,7 @@ p {
   border-top-width: 0;
 }
 
-#jioxdsllqv .gt_heading {
+#ntrwoqxpjh .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -344,13 +373,13 @@ p {
   border-right-color: #D3D3D3;
 }
 
-#jioxdsllqv .gt_bottom_border {
+#ntrwoqxpjh .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jioxdsllqv .gt_col_headings {
+#ntrwoqxpjh .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -365,7 +394,7 @@ p {
   border-right-color: #D3D3D3;
 }
 
-#jioxdsllqv .gt_col_heading {
+#ntrwoqxpjh .gt_col_heading {
   color: #FFFFFF;
   background-color: #104E8B;
   font-size: 100%;
@@ -385,7 +414,7 @@ p {
   overflow-x: hidden;
 }
 
-#jioxdsllqv .gt_column_spanner_outer {
+#ntrwoqxpjh .gt_column_spanner_outer {
   color: #FFFFFF;
   background-color: #104E8B;
   font-size: 100%;
@@ -397,15 +426,15 @@ p {
   padding-right: 4px;
 }
 
-#jioxdsllqv .gt_column_spanner_outer:first-child {
+#ntrwoqxpjh .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jioxdsllqv .gt_column_spanner_outer:last-child {
+#ntrwoqxpjh .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jioxdsllqv .gt_column_spanner {
+#ntrwoqxpjh .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -417,11 +446,11 @@ p {
   width: 100%;
 }
 
-#jioxdsllqv .gt_spanner_row {
+#ntrwoqxpjh .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#jioxdsllqv .gt_group_heading {
+#ntrwoqxpjh .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -447,7 +476,7 @@ p {
   text-align: left;
 }
 
-#jioxdsllqv .gt_empty_group_heading {
+#ntrwoqxpjh .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -462,15 +491,15 @@ p {
   vertical-align: middle;
 }
 
-#jioxdsllqv .gt_from_md > :first-child {
+#ntrwoqxpjh .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jioxdsllqv .gt_from_md > :last-child {
+#ntrwoqxpjh .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jioxdsllqv .gt_row {
+#ntrwoqxpjh .gt_row {
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 5px;
@@ -489,7 +518,7 @@ p {
   overflow-x: hidden;
 }
 
-#jioxdsllqv .gt_stub {
+#ntrwoqxpjh .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -502,7 +531,7 @@ p {
   padding-right: 5px;
 }
 
-#jioxdsllqv .gt_stub_row_group {
+#ntrwoqxpjh .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -516,15 +545,15 @@ p {
   vertical-align: top;
 }
 
-#jioxdsllqv .gt_row_group_first td {
+#ntrwoqxpjh .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jioxdsllqv .gt_row_group_first th {
+#ntrwoqxpjh .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#jioxdsllqv .gt_summary_row {
+#ntrwoqxpjh .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -534,16 +563,16 @@ p {
   padding-right: 5px;
 }
 
-#jioxdsllqv .gt_first_summary_row {
+#ntrwoqxpjh .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jioxdsllqv .gt_first_summary_row.thick {
+#ntrwoqxpjh .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jioxdsllqv .gt_last_summary_row {
+#ntrwoqxpjh .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -553,7 +582,7 @@ p {
   border-bottom-color: #D3D3D3;
 }
 
-#jioxdsllqv .gt_grand_summary_row {
+#ntrwoqxpjh .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -563,7 +592,7 @@ p {
   padding-right: 5px;
 }
 
-#jioxdsllqv .gt_first_grand_summary_row {
+#ntrwoqxpjh .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -573,7 +602,7 @@ p {
   border-top-color: #D3D3D3;
 }
 
-#jioxdsllqv .gt_last_grand_summary_row_top {
+#ntrwoqxpjh .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -583,11 +612,11 @@ p {
   border-bottom-color: #D3D3D3;
 }
 
-#jioxdsllqv .gt_striped {
+#ntrwoqxpjh .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jioxdsllqv .gt_table_body {
+#ntrwoqxpjh .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -596,7 +625,7 @@ p {
   border-bottom-color: #D3D3D3;
 }
 
-#jioxdsllqv .gt_footnotes {
+#ntrwoqxpjh .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -610,7 +639,7 @@ p {
   border-right-color: #D3D3D3;
 }
 
-#jioxdsllqv .gt_footnote {
+#ntrwoqxpjh .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -619,7 +648,7 @@ p {
   padding-right: 5px;
 }
 
-#jioxdsllqv .gt_sourcenotes {
+#ntrwoqxpjh .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -633,7 +662,7 @@ p {
   border-right-color: #D3D3D3;
 }
 
-#jioxdsllqv .gt_sourcenote {
+#ntrwoqxpjh .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -641,187 +670,215 @@ p {
   padding-right: 5px;
 }
 
-#jioxdsllqv .gt_left {
+#ntrwoqxpjh .gt_left {
   text-align: left;
 }
 
-#jioxdsllqv .gt_center {
+#ntrwoqxpjh .gt_center {
   text-align: center;
 }
 
-#jioxdsllqv .gt_right {
+#ntrwoqxpjh .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jioxdsllqv .gt_font_normal {
+#ntrwoqxpjh .gt_font_normal {
   font-weight: normal;
 }
 
-#jioxdsllqv .gt_font_bold {
+#ntrwoqxpjh .gt_font_bold {
   font-weight: bold;
 }
 
-#jioxdsllqv .gt_font_italic {
+#ntrwoqxpjh .gt_font_italic {
   font-style: italic;
 }
 
-#jioxdsllqv .gt_super {
+#ntrwoqxpjh .gt_super {
   font-size: 65%;
 }
 
-#jioxdsllqv .gt_footnote_marks {
+#ntrwoqxpjh .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#jioxdsllqv .gt_asterisk {
+#ntrwoqxpjh .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jioxdsllqv .gt_indent_1 {
+#ntrwoqxpjh .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jioxdsllqv .gt_indent_2 {
+#ntrwoqxpjh .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jioxdsllqv .gt_indent_3 {
+#ntrwoqxpjh .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jioxdsllqv .gt_indent_4 {
+#ntrwoqxpjh .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jioxdsllqv .gt_indent_5 {
+#ntrwoqxpjh .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="7" class="gt_heading gt_title gt_font_normal" style="color: #104E8B; font-family: Merriweather; font-weight: bold;">População residente, taxa média geométrica de crescimento anual e ranking populacional</td>
-    </tr>
-    <tr class="gt_heading">
-      <td colspan="7" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Municípios do Vale do Jequitinhonha selecionados - 2010 e 2022</td>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Município">Município</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="População residente 2010 (pessoas)">População residente 2010 (pessoas)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="População residente 2022 (pessoas)">População residente 2022 (pessoas)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Taxa de crescimento 2010/2000 (%)">Taxa de crescimento 2010/2000 (%)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Taxa de crescimento 2022/2010 (%)">Taxa de crescimento 2022/2010 (%)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Ranking 2010">Ranking 2010</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Ranking 2022">Ranking 2022</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr><td headers="Municipio" class="gt_row gt_left" style="font-size: smaller; background-color: #E5E5E5;">Teófilo Otoni</td>
-<td headers="pop_2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">134745</td>
-<td headers="pop_2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">137418</td>
-<td headers="tx_2000_2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">0.40</td>
-<td headers="tx_2010_2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">0.16</td>
-<td headers="ranking2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">17</td>
-<td headers="ranking2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">18</td></tr>
-    <tr><td headers="Municipio" class="gt_row gt_left" style="font-size: smaller;">Salinas</td>
-<td headers="pop_2010" class="gt_row gt_right" style="font-size: smaller;">39178</td>
-<td headers="pop_2022" class="gt_row gt_right" style="font-size: smaller;">40178</td>
-<td headers="tx_2000_2010" class="gt_row gt_right" style="font-size: smaller;">0.65</td>
-<td headers="tx_2010_2022" class="gt_row gt_right" style="font-size: smaller;">0.21</td>
-<td headers="ranking2010" class="gt_row gt_right" style="font-size: smaller;">81</td>
-<td headers="ranking2022" class="gt_row gt_right" style="font-size: smaller;">86</td></tr>
-    <tr><td headers="Municipio" class="gt_row gt_left" style="font-size: smaller; background-color: #E5E5E5;">Capelinha</td>
-<td headers="pop_2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">34803</td>
-<td headers="pop_2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">39626</td>
-<td headers="tx_2000_2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">1.09</td>
-<td headers="tx_2010_2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">1.09</td>
-<td headers="ranking2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">94</td>
-<td headers="ranking2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">88</td></tr>
-    <tr><td headers="Municipio" class="gt_row gt_left" style="font-size: smaller;">Araçuaí</td>
-<td headers="pop_2010" class="gt_row gt_right" style="font-size: smaller;">36013</td>
-<td headers="pop_2022" class="gt_row gt_right" style="font-size: smaller;">34297</td>
-<td headers="tx_2000_2010" class="gt_row gt_right" style="font-size: smaller;">0.08</td>
-<td headers="tx_2010_2022" class="gt_row gt_right" style="font-size: smaller;">−0.41</td>
-<td headers="ranking2010" class="gt_row gt_right" style="font-size: smaller;">90</td>
-<td headers="ranking2022" class="gt_row gt_right" style="font-size: smaller;">104</td></tr>
-    <tr><td headers="Municipio" class="gt_row gt_left" style="font-size: smaller; background-color: #E5E5E5;">Pedra Azul</td>
-<td headers="pop_2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">23839</td>
-<td headers="pop_2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">24410</td>
-<td headers="tx_2000_2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">0.10</td>
-<td headers="tx_2010_2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">0.20</td>
-<td headers="ranking2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">145</td>
-<td headers="ranking2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">142</td></tr>
-    <tr><td headers="Municipio" class="gt_row gt_left" style="font-size: smaller;">Minas Novas</td>
-<td headers="pop_2010" class="gt_row gt_right" style="font-size: smaller;">30794</td>
-<td headers="pop_2022" class="gt_row gt_right" style="font-size: smaller;">24405</td>
-<td headers="tx_2000_2010" class="gt_row gt_right" style="font-size: smaller;">0.05</td>
-<td headers="tx_2010_2022" class="gt_row gt_right" style="font-size: smaller;">−1.92</td>
-<td headers="ranking2010" class="gt_row gt_right" style="font-size: smaller;">109</td>
-<td headers="ranking2022" class="gt_row gt_right" style="font-size: smaller;">143</td></tr>
-    <tr><td headers="Municipio" class="gt_row gt_left" style="font-size: smaller; background-color: #E5E5E5;">Medina</td>
-<td headers="pop_2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">21026</td>
-<td headers="pop_2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">20156</td>
-<td headers="tx_2000_2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">−0.29</td>
-<td headers="tx_2010_2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">−0.35</td>
-<td headers="ranking2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">169</td>
-<td headers="ranking2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">185</td></tr>
-    <tr><td headers="Municipio" class="gt_row gt_left" style="font-size: smaller;">Turmalina</td>
-<td headers="pop_2010" class="gt_row gt_right" style="font-size: smaller;">18055</td>
-<td headers="pop_2022" class="gt_row gt_right" style="font-size: smaller;">20000</td>
-<td headers="tx_2000_2010" class="gt_row gt_right" style="font-size: smaller;">1.44</td>
-<td headers="tx_2010_2022" class="gt_row gt_right" style="font-size: smaller;">0.86</td>
-<td headers="ranking2010" class="gt_row gt_right" style="font-size: smaller;">200</td>
-<td headers="ranking2022" class="gt_row gt_right" style="font-size: smaller;">187</td></tr>
-    <tr><td headers="Municipio" class="gt_row gt_left" style="font-size: smaller; background-color: #E5E5E5;">Itaobim</td>
-<td headers="pop_2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">21001</td>
-<td headers="pop_2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">19151</td>
-<td headers="tx_2000_2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">−0.13</td>
-<td headers="tx_2010_2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">−0.77</td>
-<td headers="ranking2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">170</td>
-<td headers="ranking2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">192</td></tr>
-    <tr><td headers="Municipio" class="gt_row gt_left" style="font-size: smaller;">Malacacheta</td>
-<td headers="pop_2010" class="gt_row gt_right" style="font-size: smaller;">18776</td>
-<td headers="pop_2022" class="gt_row gt_right" style="font-size: smaller;">17516</td>
-<td headers="tx_2000_2010" class="gt_row gt_right" style="font-size: smaller;">−0.25</td>
-<td headers="tx_2010_2022" class="gt_row gt_right" style="font-size: smaller;">−0.58</td>
-<td headers="ranking2010" class="gt_row gt_right" style="font-size: smaller;">191</td>
-<td headers="ranking2022" class="gt_row gt_right" style="font-size: smaller;">206</td></tr>
-    <tr><td headers="Municipio" class="gt_row gt_left" style="font-size: smaller; background-color: #E5E5E5;">Itinga</td>
-<td headers="pop_2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">14407</td>
-<td headers="pop_2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">13745</td>
-<td headers="tx_2000_2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">0.36</td>
-<td headers="tx_2010_2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">−0.39</td>
-<td headers="ranking2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">247</td>
-<td headers="ranking2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">272</td></tr>
-    <tr><td headers="Municipio" class="gt_row gt_left" style="font-size: smaller;">Virgem da Lapa</td>
-<td headers="pop_2010" class="gt_row gt_right" style="font-size: smaller;">13619</td>
-<td headers="pop_2022" class="gt_row gt_right" style="font-size: smaller;">11804</td>
-<td headers="tx_2000_2010" class="gt_row gt_right" style="font-size: smaller;">−0.04</td>
-<td headers="tx_2010_2022" class="gt_row gt_right" style="font-size: smaller;">−1.18</td>
-<td headers="ranking2010" class="gt_row gt_right" style="font-size: smaller;">274</td>
-<td headers="ranking2022" class="gt_row gt_right" style="font-size: smaller;">306</td></tr>
-    <tr><td headers="Municipio" class="gt_row gt_left" style="font-size: smaller; background-color: #E5E5E5;">Coronel Murta</td>
-<td headers="pop_2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">9117</td>
-<td headers="pop_2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">8200</td>
-<td headers="tx_2000_2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">−0.02</td>
-<td headers="tx_2010_2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">−0.88</td>
-<td headers="ranking2010" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">383</td>
-<td headers="ranking2022" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">421</td></tr>
-    <tr><td headers="Municipio" class="gt_row gt_left" style="font-size: smaller;">Rubelita</td>
-<td headers="pop_2010" class="gt_row gt_right" style="font-size: smaller;">7772</td>
-<td headers="pop_2022" class="gt_row gt_right" style="font-size: smaller;">5679</td>
-<td headers="tx_2000_2010" class="gt_row gt_right" style="font-size: smaller;">−2.68</td>
-<td headers="tx_2010_2022" class="gt_row gt_right" style="font-size: smaller;">−2.58</td>
-<td headers="ranking2010" class="gt_row gt_right" style="font-size: smaller;">437</td>
-<td headers="ranking2022" class="gt_row gt_right" style="font-size: smaller;">555</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="7" class="gt_heading gt_title gt_font_normal" style="color: #104E8B; font-family: Merriweather; font-weight: bold">População residente, taxa média geométrica de crescimento anual e ranking populacional</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="7" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Municípios do Vale do Jequitinhonha selecionados - 2010 e 2022</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="Município" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Município</th>
+<th id="População residente 2010 (pessoas)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">População residente 2010 (pessoas)</th>
+<th id="População residente 2022 (pessoas)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">População residente 2022 (pessoas)</th>
+<th id="Taxa de crescimento 2010/2000 (%)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Taxa de crescimento 2010/2000 (%)</th>
+<th id="Taxa de crescimento 2022/2010 (%)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Taxa de crescimento 2022/2010 (%)</th>
+<th id="Ranking 2010" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Ranking 2010</th>
+<th id="Ranking 2022" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Ranking 2022</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd">
+<td class="gt_row gt_left" headers="Municipio" style="font-size: smaller; background-color: #E5E5E5">Teófilo Otoni</td>
+<td class="gt_row gt_right" headers="pop_2010" style="font-size: smaller; background-color: #E5E5E5">134745</td>
+<td class="gt_row gt_right" headers="pop_2022" style="font-size: smaller; background-color: #E5E5E5">137418</td>
+<td class="gt_row gt_right" headers="tx_2000_2010" style="font-size: smaller; background-color: #E5E5E5">0.40</td>
+<td class="gt_row gt_right" headers="tx_2010_2022" style="font-size: smaller; background-color: #E5E5E5">0.16</td>
+<td class="gt_row gt_right" headers="ranking2010" style="font-size: smaller; background-color: #E5E5E5">17</td>
+<td class="gt_row gt_right" headers="ranking2022" style="font-size: smaller; background-color: #E5E5E5">18</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Municipio" style="font-size: smaller">Salinas</td>
+<td class="gt_row gt_right" headers="pop_2010" style="font-size: smaller">39178</td>
+<td class="gt_row gt_right" headers="pop_2022" style="font-size: smaller">40178</td>
+<td class="gt_row gt_right" headers="tx_2000_2010" style="font-size: smaller">0.65</td>
+<td class="gt_row gt_right" headers="tx_2010_2022" style="font-size: smaller">0.21</td>
+<td class="gt_row gt_right" headers="ranking2010" style="font-size: smaller">81</td>
+<td class="gt_row gt_right" headers="ranking2022" style="font-size: smaller">86</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Municipio" style="font-size: smaller; background-color: #E5E5E5">Capelinha</td>
+<td class="gt_row gt_right" headers="pop_2010" style="font-size: smaller; background-color: #E5E5E5">34803</td>
+<td class="gt_row gt_right" headers="pop_2022" style="font-size: smaller; background-color: #E5E5E5">39626</td>
+<td class="gt_row gt_right" headers="tx_2000_2010" style="font-size: smaller; background-color: #E5E5E5">1.09</td>
+<td class="gt_row gt_right" headers="tx_2010_2022" style="font-size: smaller; background-color: #E5E5E5">1.09</td>
+<td class="gt_row gt_right" headers="ranking2010" style="font-size: smaller; background-color: #E5E5E5">94</td>
+<td class="gt_row gt_right" headers="ranking2022" style="font-size: smaller; background-color: #E5E5E5">88</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Municipio" style="font-size: smaller">Araçuaí</td>
+<td class="gt_row gt_right" headers="pop_2010" style="font-size: smaller">36013</td>
+<td class="gt_row gt_right" headers="pop_2022" style="font-size: smaller">34297</td>
+<td class="gt_row gt_right" headers="tx_2000_2010" style="font-size: smaller">0.08</td>
+<td class="gt_row gt_right" headers="tx_2010_2022" style="font-size: smaller">−0.41</td>
+<td class="gt_row gt_right" headers="ranking2010" style="font-size: smaller">90</td>
+<td class="gt_row gt_right" headers="ranking2022" style="font-size: smaller">104</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Municipio" style="font-size: smaller; background-color: #E5E5E5">Pedra Azul</td>
+<td class="gt_row gt_right" headers="pop_2010" style="font-size: smaller; background-color: #E5E5E5">23839</td>
+<td class="gt_row gt_right" headers="pop_2022" style="font-size: smaller; background-color: #E5E5E5">24410</td>
+<td class="gt_row gt_right" headers="tx_2000_2010" style="font-size: smaller; background-color: #E5E5E5">0.10</td>
+<td class="gt_row gt_right" headers="tx_2010_2022" style="font-size: smaller; background-color: #E5E5E5">0.20</td>
+<td class="gt_row gt_right" headers="ranking2010" style="font-size: smaller; background-color: #E5E5E5">145</td>
+<td class="gt_row gt_right" headers="ranking2022" style="font-size: smaller; background-color: #E5E5E5">142</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Municipio" style="font-size: smaller">Minas Novas</td>
+<td class="gt_row gt_right" headers="pop_2010" style="font-size: smaller">30794</td>
+<td class="gt_row gt_right" headers="pop_2022" style="font-size: smaller">24405</td>
+<td class="gt_row gt_right" headers="tx_2000_2010" style="font-size: smaller">0.05</td>
+<td class="gt_row gt_right" headers="tx_2010_2022" style="font-size: smaller">−1.92</td>
+<td class="gt_row gt_right" headers="ranking2010" style="font-size: smaller">109</td>
+<td class="gt_row gt_right" headers="ranking2022" style="font-size: smaller">143</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Municipio" style="font-size: smaller; background-color: #E5E5E5">Medina</td>
+<td class="gt_row gt_right" headers="pop_2010" style="font-size: smaller; background-color: #E5E5E5">21026</td>
+<td class="gt_row gt_right" headers="pop_2022" style="font-size: smaller; background-color: #E5E5E5">20156</td>
+<td class="gt_row gt_right" headers="tx_2000_2010" style="font-size: smaller; background-color: #E5E5E5">−0.29</td>
+<td class="gt_row gt_right" headers="tx_2010_2022" style="font-size: smaller; background-color: #E5E5E5">−0.35</td>
+<td class="gt_row gt_right" headers="ranking2010" style="font-size: smaller; background-color: #E5E5E5">169</td>
+<td class="gt_row gt_right" headers="ranking2022" style="font-size: smaller; background-color: #E5E5E5">185</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Municipio" style="font-size: smaller">Turmalina</td>
+<td class="gt_row gt_right" headers="pop_2010" style="font-size: smaller">18055</td>
+<td class="gt_row gt_right" headers="pop_2022" style="font-size: smaller">20000</td>
+<td class="gt_row gt_right" headers="tx_2000_2010" style="font-size: smaller">1.44</td>
+<td class="gt_row gt_right" headers="tx_2010_2022" style="font-size: smaller">0.86</td>
+<td class="gt_row gt_right" headers="ranking2010" style="font-size: smaller">200</td>
+<td class="gt_row gt_right" headers="ranking2022" style="font-size: smaller">187</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Municipio" style="font-size: smaller; background-color: #E5E5E5">Itaobim</td>
+<td class="gt_row gt_right" headers="pop_2010" style="font-size: smaller; background-color: #E5E5E5">21001</td>
+<td class="gt_row gt_right" headers="pop_2022" style="font-size: smaller; background-color: #E5E5E5">19151</td>
+<td class="gt_row gt_right" headers="tx_2000_2010" style="font-size: smaller; background-color: #E5E5E5">−0.13</td>
+<td class="gt_row gt_right" headers="tx_2010_2022" style="font-size: smaller; background-color: #E5E5E5">−0.77</td>
+<td class="gt_row gt_right" headers="ranking2010" style="font-size: smaller; background-color: #E5E5E5">170</td>
+<td class="gt_row gt_right" headers="ranking2022" style="font-size: smaller; background-color: #E5E5E5">192</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Municipio" style="font-size: smaller">Malacacheta</td>
+<td class="gt_row gt_right" headers="pop_2010" style="font-size: smaller">18776</td>
+<td class="gt_row gt_right" headers="pop_2022" style="font-size: smaller">17516</td>
+<td class="gt_row gt_right" headers="tx_2000_2010" style="font-size: smaller">−0.25</td>
+<td class="gt_row gt_right" headers="tx_2010_2022" style="font-size: smaller">−0.58</td>
+<td class="gt_row gt_right" headers="ranking2010" style="font-size: smaller">191</td>
+<td class="gt_row gt_right" headers="ranking2022" style="font-size: smaller">206</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Municipio" style="font-size: smaller; background-color: #E5E5E5">Itinga</td>
+<td class="gt_row gt_right" headers="pop_2010" style="font-size: smaller; background-color: #E5E5E5">14407</td>
+<td class="gt_row gt_right" headers="pop_2022" style="font-size: smaller; background-color: #E5E5E5">13745</td>
+<td class="gt_row gt_right" headers="tx_2000_2010" style="font-size: smaller; background-color: #E5E5E5">0.36</td>
+<td class="gt_row gt_right" headers="tx_2010_2022" style="font-size: smaller; background-color: #E5E5E5">−0.39</td>
+<td class="gt_row gt_right" headers="ranking2010" style="font-size: smaller; background-color: #E5E5E5">247</td>
+<td class="gt_row gt_right" headers="ranking2022" style="font-size: smaller; background-color: #E5E5E5">272</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Municipio" style="font-size: smaller">Virgem da Lapa</td>
+<td class="gt_row gt_right" headers="pop_2010" style="font-size: smaller">13619</td>
+<td class="gt_row gt_right" headers="pop_2022" style="font-size: smaller">11804</td>
+<td class="gt_row gt_right" headers="tx_2000_2010" style="font-size: smaller">−0.04</td>
+<td class="gt_row gt_right" headers="tx_2010_2022" style="font-size: smaller">−1.18</td>
+<td class="gt_row gt_right" headers="ranking2010" style="font-size: smaller">274</td>
+<td class="gt_row gt_right" headers="ranking2022" style="font-size: smaller">306</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Municipio" style="font-size: smaller; background-color: #E5E5E5">Coronel Murta</td>
+<td class="gt_row gt_right" headers="pop_2010" style="font-size: smaller; background-color: #E5E5E5">9117</td>
+<td class="gt_row gt_right" headers="pop_2022" style="font-size: smaller; background-color: #E5E5E5">8200</td>
+<td class="gt_row gt_right" headers="tx_2000_2010" style="font-size: smaller; background-color: #E5E5E5">−0.02</td>
+<td class="gt_row gt_right" headers="tx_2010_2022" style="font-size: smaller; background-color: #E5E5E5">−0.88</td>
+<td class="gt_row gt_right" headers="ranking2010" style="font-size: smaller; background-color: #E5E5E5">383</td>
+<td class="gt_row gt_right" headers="ranking2022" style="font-size: smaller; background-color: #E5E5E5">421</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Municipio" style="font-size: smaller">Rubelita</td>
+<td class="gt_row gt_right" headers="pop_2010" style="font-size: smaller">7772</td>
+<td class="gt_row gt_right" headers="pop_2022" style="font-size: smaller">5679</td>
+<td class="gt_row gt_right" headers="tx_2000_2010" style="font-size: smaller">−2.68</td>
+<td class="gt_row gt_right" headers="tx_2010_2022" style="font-size: smaller">−2.58</td>
+<td class="gt_row gt_right" headers="ranking2010" style="font-size: smaller">437</td>
+<td class="gt_row gt_right" headers="ranking2022" style="font-size: smaller">555</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -840,26 +897,25 @@ p {
 </ol>
 <div class="cell">
 <div class="cell-output-display">
-
-<div id="cwkhbfxjxm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="sqfiolejlg" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-#cwkhbfxjxm table {
+#sqfiolejlg table {
   font-family: Karla, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#cwkhbfxjxm thead, #cwkhbfxjxm tbody, #cwkhbfxjxm tfoot, #cwkhbfxjxm tr, #cwkhbfxjxm td, #cwkhbfxjxm th {
+#sqfiolejlg thead, #sqfiolejlg tbody, #sqfiolejlg tfoot, #sqfiolejlg tr, #sqfiolejlg td, #sqfiolejlg th {
   border-style: none;
 }
 
-#cwkhbfxjxm p {
+#sqfiolejlg p {
   margin: 0;
   padding: 0;
 }
 
-#cwkhbfxjxm .gt_table {
+#sqfiolejlg .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -885,12 +941,12 @@ p {
   border-left-color: #D3D3D3;
 }
 
-#cwkhbfxjxm .gt_caption {
+#sqfiolejlg .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#cwkhbfxjxm .gt_title {
+#sqfiolejlg .gt_title {
   color: #333333;
   font-size: 20px;
   font-weight: initial;
@@ -902,7 +958,7 @@ p {
   border-bottom-width: 0;
 }
 
-#cwkhbfxjxm .gt_subtitle {
+#sqfiolejlg .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -914,7 +970,7 @@ p {
   border-top-width: 0;
 }
 
-#cwkhbfxjxm .gt_heading {
+#sqfiolejlg .gt_heading {
   background-color: #FFFFFF;
   text-align: left;
   border-bottom-color: #FFFFFF;
@@ -926,13 +982,13 @@ p {
   border-right-color: #D3D3D3;
 }
 
-#cwkhbfxjxm .gt_bottom_border {
+#sqfiolejlg .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#cwkhbfxjxm .gt_col_headings {
+#sqfiolejlg .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -947,7 +1003,7 @@ p {
   border-right-color: #D3D3D3;
 }
 
-#cwkhbfxjxm .gt_col_heading {
+#sqfiolejlg .gt_col_heading {
   color: #FFFFFF;
   background-color: #104E8B;
   font-size: 100%;
@@ -967,7 +1023,7 @@ p {
   overflow-x: hidden;
 }
 
-#cwkhbfxjxm .gt_column_spanner_outer {
+#sqfiolejlg .gt_column_spanner_outer {
   color: #FFFFFF;
   background-color: #104E8B;
   font-size: 100%;
@@ -979,15 +1035,15 @@ p {
   padding-right: 4px;
 }
 
-#cwkhbfxjxm .gt_column_spanner_outer:first-child {
+#sqfiolejlg .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#cwkhbfxjxm .gt_column_spanner_outer:last-child {
+#sqfiolejlg .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#cwkhbfxjxm .gt_column_spanner {
+#sqfiolejlg .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -999,11 +1055,11 @@ p {
   width: 100%;
 }
 
-#cwkhbfxjxm .gt_spanner_row {
+#sqfiolejlg .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#cwkhbfxjxm .gt_group_heading {
+#sqfiolejlg .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1029,7 +1085,7 @@ p {
   text-align: left;
 }
 
-#cwkhbfxjxm .gt_empty_group_heading {
+#sqfiolejlg .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1044,15 +1100,15 @@ p {
   vertical-align: middle;
 }
 
-#cwkhbfxjxm .gt_from_md > :first-child {
+#sqfiolejlg .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#cwkhbfxjxm .gt_from_md > :last-child {
+#sqfiolejlg .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#cwkhbfxjxm .gt_row {
+#sqfiolejlg .gt_row {
   padding-top: 6px;
   padding-bottom: 6px;
   padding-left: 5px;
@@ -1071,7 +1127,7 @@ p {
   overflow-x: hidden;
 }
 
-#cwkhbfxjxm .gt_stub {
+#sqfiolejlg .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1084,7 +1140,7 @@ p {
   padding-right: 5px;
 }
 
-#cwkhbfxjxm .gt_stub_row_group {
+#sqfiolejlg .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1098,15 +1154,15 @@ p {
   vertical-align: top;
 }
 
-#cwkhbfxjxm .gt_row_group_first td {
+#sqfiolejlg .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#cwkhbfxjxm .gt_row_group_first th {
+#sqfiolejlg .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#cwkhbfxjxm .gt_summary_row {
+#sqfiolejlg .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1116,16 +1172,16 @@ p {
   padding-right: 5px;
 }
 
-#cwkhbfxjxm .gt_first_summary_row {
+#sqfiolejlg .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#cwkhbfxjxm .gt_first_summary_row.thick {
+#sqfiolejlg .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#cwkhbfxjxm .gt_last_summary_row {
+#sqfiolejlg .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1135,7 +1191,7 @@ p {
   border-bottom-color: #D3D3D3;
 }
 
-#cwkhbfxjxm .gt_grand_summary_row {
+#sqfiolejlg .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1145,7 +1201,7 @@ p {
   padding-right: 5px;
 }
 
-#cwkhbfxjxm .gt_first_grand_summary_row {
+#sqfiolejlg .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1155,7 +1211,7 @@ p {
   border-top-color: #D3D3D3;
 }
 
-#cwkhbfxjxm .gt_last_grand_summary_row_top {
+#sqfiolejlg .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1165,11 +1221,11 @@ p {
   border-bottom-color: #D3D3D3;
 }
 
-#cwkhbfxjxm .gt_striped {
+#sqfiolejlg .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#cwkhbfxjxm .gt_table_body {
+#sqfiolejlg .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1178,7 +1234,7 @@ p {
   border-bottom-color: #D3D3D3;
 }
 
-#cwkhbfxjxm .gt_footnotes {
+#sqfiolejlg .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1192,7 +1248,7 @@ p {
   border-right-color: #D3D3D3;
 }
 
-#cwkhbfxjxm .gt_footnote {
+#sqfiolejlg .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1201,7 +1257,7 @@ p {
   padding-right: 5px;
 }
 
-#cwkhbfxjxm .gt_sourcenotes {
+#sqfiolejlg .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1215,7 +1271,7 @@ p {
   border-right-color: #D3D3D3;
 }
 
-#cwkhbfxjxm .gt_sourcenote {
+#sqfiolejlg .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1223,229 +1279,257 @@ p {
   padding-right: 5px;
 }
 
-#cwkhbfxjxm .gt_left {
+#sqfiolejlg .gt_left {
   text-align: left;
 }
 
-#cwkhbfxjxm .gt_center {
+#sqfiolejlg .gt_center {
   text-align: center;
 }
 
-#cwkhbfxjxm .gt_right {
+#sqfiolejlg .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#cwkhbfxjxm .gt_font_normal {
+#sqfiolejlg .gt_font_normal {
   font-weight: normal;
 }
 
-#cwkhbfxjxm .gt_font_bold {
+#sqfiolejlg .gt_font_bold {
   font-weight: bold;
 }
 
-#cwkhbfxjxm .gt_font_italic {
+#sqfiolejlg .gt_font_italic {
   font-style: italic;
 }
 
-#cwkhbfxjxm .gt_super {
+#sqfiolejlg .gt_super {
   font-size: 65%;
 }
 
-#cwkhbfxjxm .gt_footnote_marks {
+#sqfiolejlg .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#cwkhbfxjxm .gt_asterisk {
+#sqfiolejlg .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#cwkhbfxjxm .gt_indent_1 {
+#sqfiolejlg .gt_indent_1 {
   text-indent: 5px;
 }
 
-#cwkhbfxjxm .gt_indent_2 {
+#sqfiolejlg .gt_indent_2 {
   text-indent: 10px;
 }
 
-#cwkhbfxjxm .gt_indent_3 {
+#sqfiolejlg .gt_indent_3 {
   text-indent: 15px;
 }
 
-#cwkhbfxjxm .gt_indent_4 {
+#sqfiolejlg .gt_indent_4 {
   text-indent: 20px;
 }
 
-#cwkhbfxjxm .gt_indent_5 {
+#sqfiolejlg .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
-<table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-  <thead>
-    <tr class="gt_heading">
-      <td colspan="9" class="gt_heading gt_title gt_font_normal" style="color: #104E8B; font-family: Merriweather; font-weight: bold;">Proporção da população por grupos etários, ranking da proporção, taxa de dependência total e índice de envelhecimento</td>
-    </tr>
-    <tr class="gt_heading">
-      <td colspan="9" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border" style="">Municípios do Vale do Jequitinhonha selecionados - 2010 e 2022</td>
-    </tr>
-    <tr class="gt_col_headings">
-      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="Município">Município</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Proporção população 0 a 14 anos (%)">Proporção população 0 a 14 anos (%)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Proporção população 15 a 64 anos (%)">Proporção população 15 a 64 anos (%)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Proporção população 65 anos ou mais (%)">Proporção população 65 anos ou mais (%)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Ranking prop. pop. 0 a 14 anos">Ranking prop. pop. 0 a 14 anos</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Ranking prop. pop. 15 a 64 anos">Ranking prop. pop. 15 a 64 anos</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="Ranking prop. pop. 65 anos ou mais">Ranking prop. pop. 65 anos ou mais</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="RD (%)">RD (%)</th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="IE (%)">IE (%)</th>
-    </tr>
-  </thead>
-  <tbody class="gt_table_body">
-    <tr class="gt_group_heading_row">
-      <th colspan="9" class="gt_group_heading" scope="colgroup" id="Grupo 1">Grupo 1</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Grupo 1  Municipio" class="gt_row gt_left" style="font-size: smaller; background-color: #E5E5E5;">Teófilo Otoni</td>
-<td headers="Grupo 1  p.pop_00_14" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">18.7</td>
-<td headers="Grupo 1  p.pop_15_64" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">68.6</td>
-<td headers="Grupo 1  p.pop_65_mais" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">12.7</td>
-<td headers="Grupo 1  ranking00_14" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">324</td>
-<td headers="Grupo 1  ranking15_64" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">331</td>
-<td headers="Grupo 1  ranking65_mais" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">557</td>
-<td headers="Grupo 1  rd.total" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">45.8</td>
-<td headers="Grupo 1  ind.envelhec" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">68.0</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="9" class="gt_group_heading" scope="colgroup" id="Grupo 2">Grupo 2</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Grupo 2  Municipio" class="gt_row gt_left" style="font-size: smaller;">Araçuaí</td>
-<td headers="Grupo 2  p.pop_00_14" class="gt_row gt_right" style="font-size: smaller;">18.7</td>
-<td headers="Grupo 2  p.pop_15_64" class="gt_row gt_right" style="font-size: smaller;">68.3</td>
-<td headers="Grupo 2  p.pop_65_mais" class="gt_row gt_right" style="font-size: smaller;">13.0</td>
-<td headers="Grupo 2  ranking00_14" class="gt_row gt_right" style="font-size: smaller;">317</td>
-<td headers="Grupo 2  ranking15_64" class="gt_row gt_right" style="font-size: smaller;">378</td>
-<td headers="Grupo 2  ranking65_mais" class="gt_row gt_right" style="font-size: smaller;">534</td>
-<td headers="Grupo 2  rd.total" class="gt_row gt_right" style="font-size: smaller;">46.4</td>
-<td headers="Grupo 2  ind.envelhec" class="gt_row gt_right" style="font-size: smaller;">69.1</td></tr>
-    <tr><td headers="Grupo 2  Municipio" class="gt_row gt_left" style="font-size: smaller; background-color: #E5E5E5;">Capelinha</td>
-<td headers="Grupo 2  p.pop_00_14" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">21.0</td>
-<td headers="Grupo 2  p.pop_15_64" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">70.3</td>
-<td headers="Grupo 2  p.pop_65_mais" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">8.7</td>
-<td headers="Grupo 2  ranking00_14" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">87</td>
-<td headers="Grupo 2  ranking15_64" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">89</td>
-<td headers="Grupo 2  ranking65_mais" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">832</td>
-<td headers="Grupo 2  rd.total" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">42.3</td>
-<td headers="Grupo 2  ind.envelhec" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">41.4</td></tr>
-    <tr><td headers="Grupo 2  Municipio" class="gt_row gt_left" style="font-size: smaller;">Salinas</td>
-<td headers="Grupo 2  p.pop_00_14" class="gt_row gt_right" style="font-size: smaller;">18.1</td>
-<td headers="Grupo 2  p.pop_15_64" class="gt_row gt_right" style="font-size: smaller;">67.7</td>
-<td headers="Grupo 2  p.pop_65_mais" class="gt_row gt_right" style="font-size: smaller;">14.2</td>
-<td headers="Grupo 2  ranking00_14" class="gt_row gt_right" style="font-size: smaller;">417</td>
-<td headers="Grupo 2  ranking15_64" class="gt_row gt_right" style="font-size: smaller;">501</td>
-<td headers="Grupo 2  ranking65_mais" class="gt_row gt_right" style="font-size: smaller;">380</td>
-<td headers="Grupo 2  rd.total" class="gt_row gt_right" style="font-size: smaller;">47.7</td>
-<td headers="Grupo 2  ind.envelhec" class="gt_row gt_right" style="font-size: smaller;">78.4</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="9" class="gt_group_heading" scope="colgroup" id="Grupo 3">Grupo 3</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Grupo 3  Municipio" class="gt_row gt_left" style="font-size: smaller; background-color: #E5E5E5;">Itaobim</td>
-<td headers="Grupo 3  p.pop_00_14" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">18.7</td>
-<td headers="Grupo 3  p.pop_15_64" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">67.1</td>
-<td headers="Grupo 3  p.pop_65_mais" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">14.2</td>
-<td headers="Grupo 3  ranking00_14" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">320</td>
-<td headers="Grupo 3  ranking15_64" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">601</td>
-<td headers="Grupo 3  ranking65_mais" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">378</td>
-<td headers="Grupo 3  rd.total" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">49.1</td>
-<td headers="Grupo 3  ind.envelhec" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">75.8</td></tr>
-    <tr><td headers="Grupo 3  Municipio" class="gt_row gt_left" style="font-size: smaller;">Malacacheta</td>
-<td headers="Grupo 3  p.pop_00_14" class="gt_row gt_right" style="font-size: smaller;">19.0</td>
-<td headers="Grupo 3  p.pop_15_64" class="gt_row gt_right" style="font-size: smaller;">67.2</td>
-<td headers="Grupo 3  p.pop_65_mais" class="gt_row gt_right" style="font-size: smaller;">13.9</td>
-<td headers="Grupo 3  ranking00_14" class="gt_row gt_right" style="font-size: smaller;">284</td>
-<td headers="Grupo 3  ranking15_64" class="gt_row gt_right" style="font-size: smaller;">585</td>
-<td headers="Grupo 3  ranking65_mais" class="gt_row gt_right" style="font-size: smaller;">419</td>
-<td headers="Grupo 3  rd.total" class="gt_row gt_right" style="font-size: smaller;">48.9</td>
-<td headers="Grupo 3  ind.envelhec" class="gt_row gt_right" style="font-size: smaller;">73.0</td></tr>
-    <tr><td headers="Grupo 3  Municipio" class="gt_row gt_left" style="font-size: smaller; background-color: #E5E5E5;">Medina</td>
-<td headers="Grupo 3  p.pop_00_14" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">19.7</td>
-<td headers="Grupo 3  p.pop_15_64" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">65.5</td>
-<td headers="Grupo 3  p.pop_65_mais" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">14.8</td>
-<td headers="Grupo 3  ranking00_14" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">192</td>
-<td headers="Grupo 3  ranking15_64" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">792</td>
-<td headers="Grupo 3  ranking65_mais" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">299</td>
-<td headers="Grupo 3  rd.total" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">52.7</td>
-<td headers="Grupo 3  ind.envelhec" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">74.8</td></tr>
-    <tr><td headers="Grupo 3  Municipio" class="gt_row gt_left" style="font-size: smaller;">Minas Novas</td>
-<td headers="Grupo 3  p.pop_00_14" class="gt_row gt_right" style="font-size: smaller;">19.6</td>
-<td headers="Grupo 3  p.pop_15_64" class="gt_row gt_right" style="font-size: smaller;">69.4</td>
-<td headers="Grupo 3  p.pop_65_mais" class="gt_row gt_right" style="font-size: smaller;">11.0</td>
-<td headers="Grupo 3  ranking00_14" class="gt_row gt_right" style="font-size: smaller;">207</td>
-<td headers="Grupo 3  ranking15_64" class="gt_row gt_right" style="font-size: smaller;">202</td>
-<td headers="Grupo 3  ranking65_mais" class="gt_row gt_right" style="font-size: smaller;">726</td>
-<td headers="Grupo 3  rd.total" class="gt_row gt_right" style="font-size: smaller;">44.2</td>
-<td headers="Grupo 3  ind.envelhec" class="gt_row gt_right" style="font-size: smaller;">56.3</td></tr>
-    <tr><td headers="Grupo 3  Municipio" class="gt_row gt_left" style="font-size: smaller; background-color: #E5E5E5;">Pedra Azul</td>
-<td headers="Grupo 3  p.pop_00_14" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">19.9</td>
-<td headers="Grupo 3  p.pop_15_64" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">67.8</td>
-<td headers="Grupo 3  p.pop_65_mais" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">12.3</td>
-<td headers="Grupo 3  ranking00_14" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">171</td>
-<td headers="Grupo 3  ranking15_64" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">487</td>
-<td headers="Grupo 3  ranking65_mais" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">603</td>
-<td headers="Grupo 3  rd.total" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">47.6</td>
-<td headers="Grupo 3  ind.envelhec" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">61.8</td></tr>
-    <tr><td headers="Grupo 3  Municipio" class="gt_row gt_left" style="font-size: smaller;">Turmalina</td>
-<td headers="Grupo 3  p.pop_00_14" class="gt_row gt_right" style="font-size: smaller;">19.2</td>
-<td headers="Grupo 3  p.pop_15_64" class="gt_row gt_right" style="font-size: smaller;">70.2</td>
-<td headers="Grupo 3  p.pop_65_mais" class="gt_row gt_right" style="font-size: smaller;">10.6</td>
-<td headers="Grupo 3  ranking00_14" class="gt_row gt_right" style="font-size: smaller;">252</td>
-<td headers="Grupo 3  ranking15_64" class="gt_row gt_right" style="font-size: smaller;">106</td>
-<td headers="Grupo 3  ranking65_mais" class="gt_row gt_right" style="font-size: smaller;">750</td>
-<td headers="Grupo 3  rd.total" class="gt_row gt_right" style="font-size: smaller;">42.5</td>
-<td headers="Grupo 3  ind.envelhec" class="gt_row gt_right" style="font-size: smaller;">55.5</td></tr>
-    <tr class="gt_group_heading_row">
-      <th colspan="9" class="gt_group_heading" scope="colgroup" id="Grupo 4">Grupo 4</th>
-    </tr>
-    <tr class="gt_row_group_first"><td headers="Grupo 4  Municipio" class="gt_row gt_left" style="font-size: smaller; background-color: #E5E5E5;">Coronel Murta</td>
-<td headers="Grupo 4  p.pop_00_14" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">18.5</td>
-<td headers="Grupo 4  p.pop_15_64" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">67.0</td>
-<td headers="Grupo 4  p.pop_65_mais" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">14.5</td>
-<td headers="Grupo 4  ranking00_14" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">372</td>
-<td headers="Grupo 4  ranking15_64" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">613</td>
-<td headers="Grupo 4  ranking65_mais" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">332</td>
-<td headers="Grupo 4  rd.total" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">49.3</td>
-<td headers="Grupo 4  ind.envelhec" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">78.8</td></tr>
-    <tr><td headers="Grupo 4  Municipio" class="gt_row gt_left" style="font-size: smaller;">Itinga</td>
-<td headers="Grupo 4  p.pop_00_14" class="gt_row gt_right" style="font-size: smaller;">19.2</td>
-<td headers="Grupo 4  p.pop_15_64" class="gt_row gt_right" style="font-size: smaller;">66.9</td>
-<td headers="Grupo 4  p.pop_65_mais" class="gt_row gt_right" style="font-size: smaller;">14.0</td>
-<td headers="Grupo 4  ranking00_14" class="gt_row gt_right" style="font-size: smaller;">258</td>
-<td headers="Grupo 4  ranking15_64" class="gt_row gt_right" style="font-size: smaller;">636</td>
-<td headers="Grupo 4  ranking65_mais" class="gt_row gt_right" style="font-size: smaller;">402</td>
-<td headers="Grupo 4  rd.total" class="gt_row gt_right" style="font-size: smaller;">49.5</td>
-<td headers="Grupo 4  ind.envelhec" class="gt_row gt_right" style="font-size: smaller;">73.0</td></tr>
-    <tr><td headers="Grupo 4  Municipio" class="gt_row gt_left" style="font-size: smaller; background-color: #E5E5E5;">Rubelita</td>
-<td headers="Grupo 4  p.pop_00_14" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">17.2</td>
-<td headers="Grupo 4  p.pop_15_64" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">65.3</td>
-<td headers="Grupo 4  p.pop_65_mais" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">17.5</td>
-<td headers="Grupo 4  ranking00_14" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">566</td>
-<td headers="Grupo 4  ranking15_64" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">803</td>
-<td headers="Grupo 4  ranking65_mais" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">67</td>
-<td headers="Grupo 4  rd.total" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">53.2</td>
-<td headers="Grupo 4  ind.envelhec" class="gt_row gt_right" style="font-size: smaller; background-color: #E5E5E5;">101.9</td></tr>
-    <tr><td headers="Grupo 4  Municipio" class="gt_row gt_left" style="font-size: smaller;">Virgem da Lapa</td>
-<td headers="Grupo 4  p.pop_00_14" class="gt_row gt_right" style="font-size: smaller;">17.3</td>
-<td headers="Grupo 4  p.pop_15_64" class="gt_row gt_right" style="font-size: smaller;">68.0</td>
-<td headers="Grupo 4  p.pop_65_mais" class="gt_row gt_right" style="font-size: smaller;">14.7</td>
-<td headers="Grupo 4  ranking00_14" class="gt_row gt_right" style="font-size: smaller;">554</td>
-<td headers="Grupo 4  ranking15_64" class="gt_row gt_right" style="font-size: smaller;">454</td>
-<td headers="Grupo 4  ranking65_mais" class="gt_row gt_right" style="font-size: smaller;">306</td>
-<td headers="Grupo 4  rd.total" class="gt_row gt_right" style="font-size: smaller;">47.1</td>
-<td headers="Grupo 4  ind.envelhec" class="gt_row gt_right" style="font-size: smaller;">84.9</td></tr>
-  </tbody>
-  
-  
+
+<table class="gt_table caption-top table table-sm table-striped small" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<thead>
+<tr class="header gt_heading">
+<th colspan="9" class="gt_heading gt_title gt_font_normal" style="color: #104E8B; font-family: Merriweather; font-weight: bold">Proporção da população por grupos etários, ranking da proporção, taxa de dependência total e índice de envelhecimento</th>
+</tr>
+<tr class="odd gt_heading">
+<th colspan="9" class="gt_heading gt_subtitle gt_font_normal gt_bottom_border">Municípios do Vale do Jequitinhonha selecionados - 2010 e 2022</th>
+</tr>
+<tr class="header gt_col_headings">
+<th id="Município" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">Município</th>
+<th id="Proporção população 0 a 14 anos (%)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Proporção população 0 a 14 anos (%)</th>
+<th id="Proporção população 15 a 64 anos (%)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Proporção população 15 a 64 anos (%)</th>
+<th id="Proporção população 65 anos ou mais (%)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Proporção população 65 anos ou mais (%)</th>
+<th id="Ranking prop. pop. 0 a 14 anos" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Ranking prop. pop. 0 a 14 anos</th>
+<th id="Ranking prop. pop. 15 a 64 anos" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Ranking prop. pop. 15 a 64 anos</th>
+<th id="Ranking prop. pop. 65 anos ou mais" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">Ranking prop. pop. 65 anos ou mais</th>
+<th id="RD (%)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">RD (%)</th>
+<th id="IE (%)" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">IE (%)</th>
+</tr>
+</thead>
+<tbody class="gt_table_body">
+<tr class="odd gt_group_heading_row">
+<td colspan="9" id="Grupo 1" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Grupo 1</td>
+</tr>
+<tr class="even gt_row_group_first">
+<td class="gt_row gt_left" headers="Grupo 1  Municipio" style="font-size: smaller; background-color: #E5E5E5">Teófilo Otoni</td>
+<td class="gt_row gt_right" headers="Grupo 1  p.pop_00_14" style="font-size: smaller; background-color: #E5E5E5">18.7</td>
+<td class="gt_row gt_right" headers="Grupo 1  p.pop_15_64" style="font-size: smaller; background-color: #E5E5E5">68.6</td>
+<td class="gt_row gt_right" headers="Grupo 1  p.pop_65_mais" style="font-size: smaller; background-color: #E5E5E5">12.7</td>
+<td class="gt_row gt_right" headers="Grupo 1  ranking00_14" style="font-size: smaller; background-color: #E5E5E5">324</td>
+<td class="gt_row gt_right" headers="Grupo 1  ranking15_64" style="font-size: smaller; background-color: #E5E5E5">331</td>
+<td class="gt_row gt_right" headers="Grupo 1  ranking65_mais" style="font-size: smaller; background-color: #E5E5E5">557</td>
+<td class="gt_row gt_right" headers="Grupo 1  rd.total" style="font-size: smaller; background-color: #E5E5E5">45.8</td>
+<td class="gt_row gt_right" headers="Grupo 1  ind.envelhec" style="font-size: smaller; background-color: #E5E5E5">68.0</td>
+</tr>
+<tr class="odd gt_group_heading_row">
+<td colspan="9" id="Grupo 2" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Grupo 2</td>
+</tr>
+<tr class="even gt_row_group_first">
+<td class="gt_row gt_left" headers="Grupo 2  Municipio" style="font-size: smaller">Araçuaí</td>
+<td class="gt_row gt_right" headers="Grupo 2  p.pop_00_14" style="font-size: smaller">18.7</td>
+<td class="gt_row gt_right" headers="Grupo 2  p.pop_15_64" style="font-size: smaller">68.3</td>
+<td class="gt_row gt_right" headers="Grupo 2  p.pop_65_mais" style="font-size: smaller">13.0</td>
+<td class="gt_row gt_right" headers="Grupo 2  ranking00_14" style="font-size: smaller">317</td>
+<td class="gt_row gt_right" headers="Grupo 2  ranking15_64" style="font-size: smaller">378</td>
+<td class="gt_row gt_right" headers="Grupo 2  ranking65_mais" style="font-size: smaller">534</td>
+<td class="gt_row gt_right" headers="Grupo 2  rd.total" style="font-size: smaller">46.4</td>
+<td class="gt_row gt_right" headers="Grupo 2  ind.envelhec" style="font-size: smaller">69.1</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo 2  Municipio" style="font-size: smaller; background-color: #E5E5E5">Capelinha</td>
+<td class="gt_row gt_right" headers="Grupo 2  p.pop_00_14" style="font-size: smaller; background-color: #E5E5E5">21.0</td>
+<td class="gt_row gt_right" headers="Grupo 2  p.pop_15_64" style="font-size: smaller; background-color: #E5E5E5">70.3</td>
+<td class="gt_row gt_right" headers="Grupo 2  p.pop_65_mais" style="font-size: smaller; background-color: #E5E5E5">8.7</td>
+<td class="gt_row gt_right" headers="Grupo 2  ranking00_14" style="font-size: smaller; background-color: #E5E5E5">87</td>
+<td class="gt_row gt_right" headers="Grupo 2  ranking15_64" style="font-size: smaller; background-color: #E5E5E5">89</td>
+<td class="gt_row gt_right" headers="Grupo 2  ranking65_mais" style="font-size: smaller; background-color: #E5E5E5">832</td>
+<td class="gt_row gt_right" headers="Grupo 2  rd.total" style="font-size: smaller; background-color: #E5E5E5">42.3</td>
+<td class="gt_row gt_right" headers="Grupo 2  ind.envelhec" style="font-size: smaller; background-color: #E5E5E5">41.4</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo 2  Municipio" style="font-size: smaller">Salinas</td>
+<td class="gt_row gt_right" headers="Grupo 2  p.pop_00_14" style="font-size: smaller">18.1</td>
+<td class="gt_row gt_right" headers="Grupo 2  p.pop_15_64" style="font-size: smaller">67.7</td>
+<td class="gt_row gt_right" headers="Grupo 2  p.pop_65_mais" style="font-size: smaller">14.2</td>
+<td class="gt_row gt_right" headers="Grupo 2  ranking00_14" style="font-size: smaller">417</td>
+<td class="gt_row gt_right" headers="Grupo 2  ranking15_64" style="font-size: smaller">501</td>
+<td class="gt_row gt_right" headers="Grupo 2  ranking65_mais" style="font-size: smaller">380</td>
+<td class="gt_row gt_right" headers="Grupo 2  rd.total" style="font-size: smaller">47.7</td>
+<td class="gt_row gt_right" headers="Grupo 2  ind.envelhec" style="font-size: smaller">78.4</td>
+</tr>
+<tr class="odd gt_group_heading_row">
+<td colspan="9" id="Grupo 3" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Grupo 3</td>
+</tr>
+<tr class="even gt_row_group_first">
+<td class="gt_row gt_left" headers="Grupo 3  Municipio" style="font-size: smaller; background-color: #E5E5E5">Itaobim</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_00_14" style="font-size: smaller; background-color: #E5E5E5">18.7</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_15_64" style="font-size: smaller; background-color: #E5E5E5">67.1</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_65_mais" style="font-size: smaller; background-color: #E5E5E5">14.2</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking00_14" style="font-size: smaller; background-color: #E5E5E5">320</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking15_64" style="font-size: smaller; background-color: #E5E5E5">601</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking65_mais" style="font-size: smaller; background-color: #E5E5E5">378</td>
+<td class="gt_row gt_right" headers="Grupo 3  rd.total" style="font-size: smaller; background-color: #E5E5E5">49.1</td>
+<td class="gt_row gt_right" headers="Grupo 3  ind.envelhec" style="font-size: smaller; background-color: #E5E5E5">75.8</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo 3  Municipio" style="font-size: smaller">Malacacheta</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_00_14" style="font-size: smaller">19.0</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_15_64" style="font-size: smaller">67.2</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_65_mais" style="font-size: smaller">13.9</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking00_14" style="font-size: smaller">284</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking15_64" style="font-size: smaller">585</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking65_mais" style="font-size: smaller">419</td>
+<td class="gt_row gt_right" headers="Grupo 3  rd.total" style="font-size: smaller">48.9</td>
+<td class="gt_row gt_right" headers="Grupo 3  ind.envelhec" style="font-size: smaller">73.0</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo 3  Municipio" style="font-size: smaller; background-color: #E5E5E5">Medina</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_00_14" style="font-size: smaller; background-color: #E5E5E5">19.7</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_15_64" style="font-size: smaller; background-color: #E5E5E5">65.5</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_65_mais" style="font-size: smaller; background-color: #E5E5E5">14.8</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking00_14" style="font-size: smaller; background-color: #E5E5E5">192</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking15_64" style="font-size: smaller; background-color: #E5E5E5">792</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking65_mais" style="font-size: smaller; background-color: #E5E5E5">299</td>
+<td class="gt_row gt_right" headers="Grupo 3  rd.total" style="font-size: smaller; background-color: #E5E5E5">52.7</td>
+<td class="gt_row gt_right" headers="Grupo 3  ind.envelhec" style="font-size: smaller; background-color: #E5E5E5">74.8</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo 3  Municipio" style="font-size: smaller">Minas Novas</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_00_14" style="font-size: smaller">19.6</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_15_64" style="font-size: smaller">69.4</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_65_mais" style="font-size: smaller">11.0</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking00_14" style="font-size: smaller">207</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking15_64" style="font-size: smaller">202</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking65_mais" style="font-size: smaller">726</td>
+<td class="gt_row gt_right" headers="Grupo 3  rd.total" style="font-size: smaller">44.2</td>
+<td class="gt_row gt_right" headers="Grupo 3  ind.envelhec" style="font-size: smaller">56.3</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo 3  Municipio" style="font-size: smaller; background-color: #E5E5E5">Pedra Azul</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_00_14" style="font-size: smaller; background-color: #E5E5E5">19.9</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_15_64" style="font-size: smaller; background-color: #E5E5E5">67.8</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_65_mais" style="font-size: smaller; background-color: #E5E5E5">12.3</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking00_14" style="font-size: smaller; background-color: #E5E5E5">171</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking15_64" style="font-size: smaller; background-color: #E5E5E5">487</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking65_mais" style="font-size: smaller; background-color: #E5E5E5">603</td>
+<td class="gt_row gt_right" headers="Grupo 3  rd.total" style="font-size: smaller; background-color: #E5E5E5">47.6</td>
+<td class="gt_row gt_right" headers="Grupo 3  ind.envelhec" style="font-size: smaller; background-color: #E5E5E5">61.8</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo 3  Municipio" style="font-size: smaller">Turmalina</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_00_14" style="font-size: smaller">19.2</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_15_64" style="font-size: smaller">70.2</td>
+<td class="gt_row gt_right" headers="Grupo 3  p.pop_65_mais" style="font-size: smaller">10.6</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking00_14" style="font-size: smaller">252</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking15_64" style="font-size: smaller">106</td>
+<td class="gt_row gt_right" headers="Grupo 3  ranking65_mais" style="font-size: smaller">750</td>
+<td class="gt_row gt_right" headers="Grupo 3  rd.total" style="font-size: smaller">42.5</td>
+<td class="gt_row gt_right" headers="Grupo 3  ind.envelhec" style="font-size: smaller">55.5</td>
+</tr>
+<tr class="even gt_group_heading_row">
+<td colspan="9" id="Grupo 4" class="gt_group_heading" data-quarto-table-cell-role="th" scope="colgroup">Grupo 4</td>
+</tr>
+<tr class="odd gt_row_group_first">
+<td class="gt_row gt_left" headers="Grupo 4  Municipio" style="font-size: smaller; background-color: #E5E5E5">Coronel Murta</td>
+<td class="gt_row gt_right" headers="Grupo 4  p.pop_00_14" style="font-size: smaller; background-color: #E5E5E5">18.5</td>
+<td class="gt_row gt_right" headers="Grupo 4  p.pop_15_64" style="font-size: smaller; background-color: #E5E5E5">67.0</td>
+<td class="gt_row gt_right" headers="Grupo 4  p.pop_65_mais" style="font-size: smaller; background-color: #E5E5E5">14.5</td>
+<td class="gt_row gt_right" headers="Grupo 4  ranking00_14" style="font-size: smaller; background-color: #E5E5E5">372</td>
+<td class="gt_row gt_right" headers="Grupo 4  ranking15_64" style="font-size: smaller; background-color: #E5E5E5">613</td>
+<td class="gt_row gt_right" headers="Grupo 4  ranking65_mais" style="font-size: smaller; background-color: #E5E5E5">332</td>
+<td class="gt_row gt_right" headers="Grupo 4  rd.total" style="font-size: smaller; background-color: #E5E5E5">49.3</td>
+<td class="gt_row gt_right" headers="Grupo 4  ind.envelhec" style="font-size: smaller; background-color: #E5E5E5">78.8</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo 4  Municipio" style="font-size: smaller">Itinga</td>
+<td class="gt_row gt_right" headers="Grupo 4  p.pop_00_14" style="font-size: smaller">19.2</td>
+<td class="gt_row gt_right" headers="Grupo 4  p.pop_15_64" style="font-size: smaller">66.9</td>
+<td class="gt_row gt_right" headers="Grupo 4  p.pop_65_mais" style="font-size: smaller">14.0</td>
+<td class="gt_row gt_right" headers="Grupo 4  ranking00_14" style="font-size: smaller">258</td>
+<td class="gt_row gt_right" headers="Grupo 4  ranking15_64" style="font-size: smaller">636</td>
+<td class="gt_row gt_right" headers="Grupo 4  ranking65_mais" style="font-size: smaller">402</td>
+<td class="gt_row gt_right" headers="Grupo 4  rd.total" style="font-size: smaller">49.5</td>
+<td class="gt_row gt_right" headers="Grupo 4  ind.envelhec" style="font-size: smaller">73.0</td>
+</tr>
+<tr class="odd">
+<td class="gt_row gt_left" headers="Grupo 4  Municipio" style="font-size: smaller; background-color: #E5E5E5">Rubelita</td>
+<td class="gt_row gt_right" headers="Grupo 4  p.pop_00_14" style="font-size: smaller; background-color: #E5E5E5">17.2</td>
+<td class="gt_row gt_right" headers="Grupo 4  p.pop_15_64" style="font-size: smaller; background-color: #E5E5E5">65.3</td>
+<td class="gt_row gt_right" headers="Grupo 4  p.pop_65_mais" style="font-size: smaller; background-color: #E5E5E5">17.5</td>
+<td class="gt_row gt_right" headers="Grupo 4  ranking00_14" style="font-size: smaller; background-color: #E5E5E5">566</td>
+<td class="gt_row gt_right" headers="Grupo 4  ranking15_64" style="font-size: smaller; background-color: #E5E5E5">803</td>
+<td class="gt_row gt_right" headers="Grupo 4  ranking65_mais" style="font-size: smaller; background-color: #E5E5E5">67</td>
+<td class="gt_row gt_right" headers="Grupo 4  rd.total" style="font-size: smaller; background-color: #E5E5E5">53.2</td>
+<td class="gt_row gt_right" headers="Grupo 4  ind.envelhec" style="font-size: smaller; background-color: #E5E5E5">101.9</td>
+</tr>
+<tr class="even">
+<td class="gt_row gt_left" headers="Grupo 4  Municipio" style="font-size: smaller">Virgem da Lapa</td>
+<td class="gt_row gt_right" headers="Grupo 4  p.pop_00_14" style="font-size: smaller">17.3</td>
+<td class="gt_row gt_right" headers="Grupo 4  p.pop_15_64" style="font-size: smaller">68.0</td>
+<td class="gt_row gt_right" headers="Grupo 4  p.pop_65_mais" style="font-size: smaller">14.7</td>
+<td class="gt_row gt_right" headers="Grupo 4  ranking00_14" style="font-size: smaller">554</td>
+<td class="gt_row gt_right" headers="Grupo 4  ranking15_64" style="font-size: smaller">454</td>
+<td class="gt_row gt_right" headers="Grupo 4  ranking65_mais" style="font-size: smaller">306</td>
+<td class="gt_row gt_right" headers="Grupo 4  rd.total" style="font-size: smaller">47.1</td>
+<td class="gt_row gt_right" headers="Grupo 4  ind.envelhec" style="font-size: smaller">84.9</td>
+</tr>
+</tbody>
 </table>
+
 </div>
 </div>
 </div>
@@ -1453,7 +1537,7 @@ p {
 <!-- ## Há registros de povos tradicionais nos Municípios do Vale do Jequitinhonha selecionados? -->
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" role="list" style="display: none">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-ibge2023_primeiros" class="csl-entry" role="listitem">
 IBGE. 2023a. <span>«Censo Demográfico 2022: População e domicílios: Primeiros resultados»</span>. Rio de Janeiro: Instituto Brasileiro de Geografia e Estatística; <a href="https://censo2022.ibge.gov.br/apps/pgi/pdf/CensoDemografico2022-PopulacaoeDomicilios-PrimeirosResultados-20230627final.pdf" class="uri">https://censo2022.ibge.gov.br/apps/pgi/pdf/CensoDemografico2022-PopulacaoeDomicilios-PrimeirosResultados-20230627final.pdf</a>.
 </div>
@@ -1554,10 +1638,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1567,8 +1668,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1580,7 +1690,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1624,6 +1857,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1649,6 +1883,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1710,17 +1970,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./introducao.html" class="pagination-link">
+      <a href="./introducao.html" class="pagination-link" aria-label="Introdução">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introdução</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./migracao.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Migração</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./migracao.html" class="pagination-link" aria-label="Movimentos migratórios com o Censo Demográfico até 2010">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Movimentos migratórios com o Censo Demográfico até 2010</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 
