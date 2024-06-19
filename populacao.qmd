@@ -13,7 +13,7 @@ p {
 }
 ```
 
-## Quantas pessoas residem nos municípios com potencial para exploração do lítio no Vale do Jequitinhonha? Qual foi a evolução populacional nos últimos 12 anos? {#sec-residentes}
+## Quantas pessoas residem nos municípios com potencial para exploração do lítio no Vale do Jequitinhonha? Qual foi a evolução populacional nos últimos 12 anos? {#sec-quantas-pessoas-residem-nos-municípios-com-potencial-para-exploração-do-lítio-no-vale-do-jequitinhonha-qual-foi-a-evolução-populacional-nos-últimos-12-anos}
 
 Com base nos dados do Censo Demográfico do IBGE, é possível identificar o tamanho da população nos Municípios do Vale do Jequitinhonha selecionados em 2022. Teófilo Otoni se destaca como o maior município, com mais de 137 mil habitantes, ocupando a 18ª posição no estado de Minas Gerais. Salinas, Capelinha e Araçuaí registraram populações variando de 34 a 40 mil habitantes. Os municípios de Pedra Azul, Minas Novas, Medina, Turmalina, Itaobim e Malacacheta contaram com populações que variaram de 17 a 24 mil habitantes em 2022. Itinga, Virgem da Lapa, Coronel Murta e Rubelita possuem populações inferiores a 15 mil habitantes, sendo Rubelita o município com o menor contingente populacional, com 5.679 residentes em 2022. Portanto, é possível classificar esses municípios em termos de tamanho populacional da seguinte maneira:
 

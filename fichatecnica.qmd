@@ -24,6 +24,11 @@ Mônica Moreira Esteves Bernardi
 
 <br>
 
+**ASSESSORIA TÉCNICA DA PRESIDÊNCIA**
+
+Mauro César da Silveira
+
+
 **DIRETORIA DE ESTATÍSTICA E INFORMAÇÕES**
 
 Claudio Djissey Shikida (Diretor)
@@ -46,21 +51,21 @@ Vitor Marinho
 
 **Autores**
 
--   Cap. 1: População e estrutura etária - Caio Gonçalves e Vitor Marinho
+-   Cap. 1: População e estrutura etária com o Censo Demográfico de 2022 - Caio Gonçalves e Vitor Marinho
 
--   Cap. 2: Produção e Emprego - Vitor Marinho, Caio Gonçalves e Cláudio Shikida
+-   Cap. 2: Movimentos migratórios com o Censo Demográfico até 2010 - Olinto Nogueira
 
--   Cap. 3: Aspectos Sociais - Caio Gonçalves e Vitor Marinho
+-   Cap. 3: Utilizando o CadÚnico para os estudos de migração no período recente - Helena Soares
 
--   Cap. 4: Fluxos Migratórios com dados censitários - Olinto Nogueira
+-   Cap. 4: Os fluxos migratórios de Aracuaí com o Censo Demográfico de 2010 - Cláudio Costa e Helena Soares
 
--   Cap. 5: Migração com CadÚnico Autores - Helena Soares
+-   Cap. 5: Produção, exportações e o emprego - Vitor Marinho, Caio Gonçalves e Cláudio Shikida
 
--   Cap. 6: Caso Araçuaí - Cláudio Costa e Helena Soares
+-   Cap. 6: Aspectos sociais à luz do Índice Mineiro de Responsabilidade Social - Caio Gonçalves e Vitor Marinho
 
--   Cap. 7: Equipamentos de saúde e educação- Caio Gonçalves, Vitor Marinho e Cláudio Shikida
+-   Cap. 7: Equipamentos de saúde e educação - Caio Gonçalves, Vitor Marinho e Cláudio Shikida
 
--   Cap. 8: Ações prioritárias de desenvolvimento - Caio Gonçalves e Cláudio Shikida
+<!-- -   Cap. 8: Ações prioritárias de desenvolvimento - Caio Gonçalves e Cláudio Shikida -->
 
 Os textos produzidos contaram com revisões e comentários de Renato Vale, Cláudio Costa e Cláudio Shikida.
 

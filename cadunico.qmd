@@ -273,7 +273,7 @@ ggplot(df_long, aes(x = MUNICIPIO, y = Proporcao, fill = Genero)) +
 
 Fonte: Base Identificada do Cadastro Único do Governo Federal.
 
-## O que é possível captar de migração com os dados do CadÚnico?
+## O que é possível captar de migração com os dados do CadÚnico? {#sec-o-que-é-possível-captar-de-migração-com-os-dados-do-cadúnico}
 
 Com base nos dados do Cadastro Único, fo~~r~~am apurados o saldo migratório e a taxa líquida de migração do período entre 2012 e 2022 dos municípios do Projeto Lítio. A definição de migrante baseou-se no município de última residência no ano anterior, constituindo, assim, uma análise por período. O saldo migratório refere-se à diferença entre o número de pessoas que entraram no município e o número de pessoas que saíram~~,~~. A taxa líquida de migração indica a proporção do saldo em relação à população com idade entre 14 e 64 anos, no final do período considerado, já ajustada pelas saídas no intervalo (mortalidade, remoção da base de dados e mudança para outro estado ou país). Nos municípios do Vale do Lítio, prevalece um saldo migratório negativo ou próximo de zero, indicando a falta de retenção da população em idade ativa para o trabalho que se encontra em situação de vulnerabilidade financeira.
 

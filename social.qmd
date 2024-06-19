@@ -156,9 +156,9 @@ tabela00_social <- tabela00_social %>%
   )
 ```
 
-### GINI
 
-A análise dos índices de Gini dos municípios listados revela tendências distintas de desigualdade ao longo das três décadas consideradas (1991, 2000 e 2010). O Município de Teófilo Otoni, pertencente ao Grupo 1, apresenta uma melhora progressiva, com uma redução contínua do índice, indicando uma diminuição na desigualdade de renda. Os municípios do Grupo 2 demonstram uma variabilidade maior: enquanto Capelinha e Araçuaí mostram reduções após flutuações, Salinas exibe um aumento significativo da desigualdade em 2010. No Grupo 3, exceto por uma oscilação notável em Itaobim e Malacacheta, a maioria tende a uma redução do índice, sugerindo melhorias nas condições de equidade. Por fim, os municípios do Grupo 4 apresentam uma tendência mais estável e geralmente positiva, com uma diminuição notável na desigualdade, especialmente em Rubelita, que após atingir o pico em 2000, retorna a um índice mais equitativo em 2010. Essas dinâmicas sugerem intervenções socioeconômicas variadas, que impactaram de forma diferenciada a distribuição de renda nessas localidades.
+
+A análise dos índices de Gini dos municípios listados revela tendências distintas de desigualdade ao longo das três décadas consideradas (1991, 2000 e 2010). O Município de Teófilo Otoni, pertencente ao Grupo 1, apresenta uma melhora progressiva, com uma redução contínua do índice, indicando uma diminuição na desigualdade de renda. Os municípios do Grupo 2 demonstram uma variabilidade maior: enquanto Capelinha e Araçuaí mostram reduções após flutuações, Salinas exibe um aumento significativo da desigualdade em 2010. No Grupo 3, exceto por uma oscilação notável em Itaobim e Malacacheta, a maioria tende a uma redução do índice, sugerindo melhorias nas condições de equidade. Por fim, os municípios do Grupo 4 apresentam uma tendência mais estável e geralmente positiva, com uma diminuição notável na desigualdade, especialmente em Rubelita, que após atingir o pico em 2000, retorna a um índice mais equitativo em 2010. 
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # Criando o vetor com os municípios
@@ -170,12 +170,12 @@ ano_2000 <- c(0.600, 0.620, 0.570, 0.580, 0.610, 0.660, 0.560, 0.530, 0.600, 0.5
 ano_2010 <- c(0.570, 0.570, 0.520, 0.650, 0.510, 0.530, 0.570, 0.500, 0.530, 0.500, 0.490, 0.500, 0.500, 0.490)
 
 # Criando o DataFrame
-df_gini <- data.frame(Municipios = municipios, 
-                 "1991" = ano_1991, 
-                 "2000" = ano_2000, 
+df_gini <- data.frame(Municipios = municipios,
+                 "1991" = ano_1991,
+                 "2000" = ano_2000,
                  "2010" = ano_2010)
 
-df_gini <- df_gini %>% 
+df_gini <- df_gini %>%
   mutate(Grupo = case_when(
     Municipios  == "Teófilo Otoni" ~ "Grupo 1",
     Municipios  %in% c("Salinas", "Capelinha", "Araçuaí") ~ "Grupo 2",
@@ -183,11 +183,11 @@ df_gini <- df_gini %>%
     Municipios  %in% c("Itinga", "Virgem da Lapa", "Coronel Murta", "Rubelita") ~ "Grupo 4"
   )) %>%
   arrange(Grupo) %>%
-  group_by(Grupo) 
+  group_by(Grupo)
 
 
 # Exibindo o DataFrame
-df_gini %>% 
+df_gini %>%
   gt() %>%
   tab_header(
     title = "GINI"
@@ -219,20 +219,18 @@ df_gini %>%
               X1991 = '1991',
               X2000 = '2000',
               X2010 = '2010')  %>%
-  tab_source_note(source_note = md("Fonte: IBGE. Elaboração: FJP/Diretoria de Estatística e Informações. ")) 
- 
+  tab_source_note(source_note = md("Fonte: IBGE. Elaboração: FJP/Diretoria de Estatística e Informações. "))
+
 
 ```
 
-### IDHM
+A evolução do Índice de Desenvolvimento Humano Municipal (IDHM) para os municípios citados reflete melhorias significativas entre 1991 e 2010. Observa-se uma tendência geral de crescimento contínuo nos índices, indicando avanços nas dimensões de educação, longevidade e renda.
 
-A evolução do Índice de Desenvolvimento Humano Municipal (IDHM) para os municípios citados reflete melhorias significativas entre 1991 e 2010. Observa-se uma tendência geral de crescimento contínuo nos índices, indicando avanços nas dimensões de educação, saúde e renda.
+Teófilo Otoni se destaca com o maior IDHM em 2010 e um aumento consistente ao longo dos anos. Em contraste, apesar das melhorias, municípios como Rubelita e Itinga apresentam os menores índices em 2010 e figuram entre os últimos no *ranking*, o que pode indicar desafios persistentes nessas áreas.
 
-Teófilo Otoni se destaca com o maior IDHM em 2010 e um aumento consistente ao longo dos anos, refletindo possíveis políticas efetivas de desenvolvimento social e econômico. Em contraste, apesar das melhorias, municípios como Rubelita e Itinga apresentam os menores índices em 2010 e figuram entre os últimos no ranking, o que pode indicar desafios persistentes nessas áreas.
+Os municípios de Araçuaí, Capelinha e Salinas também mostram uma trajetória de crescimento, mas com variações em suas posições no ranking de 2010, sugerindo que, apesar dos avanços, ainda enfrentam desafios para alcançar níveis mais altos de desenvolvimento humano em comparação com outros municípios.
 
-Os municípios de Araçuaí, Capelinha e Salinas também mostram uma trajetória de crescimento, mas com variações em suas posições no ranking de 2010, sugerindo que, apesar dos avanços, ainda enfrentam desafios para alcançar níveis mais altos de desenvolvimento humano em comparação com outras regiões.
-
-De forma geral, todos os municípios analisados apresentaram melhorias no IDHM ao longo das duas décadas, o que demonstra um progresso considerável. No entanto, a variação entre eles no ranking de 2010 aponta para a necessidade de estratégias diferenciadas e focadas para enfrentar as especificidades de cada município na busca por um desenvolvimento humano mais equitativo e sustentável.
+De forma geral, todos os municípios analisados apresentaram melhorias no IDHM ao longo das duas décadas. No entanto, a variação entre eles no ranking de 2010 aponta para a necessidade de estratégias diferenciadas e focadas para enfrentar as especificidades de cada município na busca por um desenvolvimento humano mais equitativo e sustentável.
 
 ```{r, echo=FALSE, warning=FALSE, message=FALSE}
 # Criando o vetor com os municípios
@@ -245,9 +243,9 @@ idhm_2010 <- c(0.701, 0.663, 0.653, 0.679, 0.629, 0.618, 0.624, 0.633, 0.627, 0.
 ranking_2010 <- c(223, 469, 529, 364, 660, 721, 699, 637, 675, 347, 669, 778, 815, 750)
 
 # Criando o DataFrame
-df_idhm <- data.frame(Municípios = municipios, 
-                 "IDHM 1991" = idhm_1991, 
-                 "IDHM 2000" = idhm_2000, 
+df_idhm <- data.frame(Municípios = municipios,
+                 "IDHM 1991" = idhm_1991,
+                 "IDHM 2000" = idhm_2000,
                  "IDHM 2010" = idhm_2010,
                  "Ranking 2010" = ranking_2010)
 
@@ -257,7 +255,7 @@ names(df_gini)[names(df_gini) == "X2000"] <- "IDHM_2000"
 names(df_gini)[names(df_gini) == "X2010"] <- "IDHM_2010"
 
 # tabela
-df_idhm %>% 
+df_idhm %>%
   gt() %>%
   tab_header(
     title = "IDHM"
@@ -291,65 +289,66 @@ df_idhm %>%
 
 
 ```
+ 
 
-### Taxa de analfabetismo
+<!-- ### Taxa de analfabetismo -->
 
-A taxa de analfabetismo nos municípios listados mostra uma tendência de declínio geral entre os Censos de 2000 e 2010, com uma continuação dessa tendência em muitos municípios até 2021, conforme dados do Cadastro Único. Isso reflete avanços importantes na educação básica dessas localidades.
+<!-- A taxa de analfabetismo nos municípios listados mostra uma tendência de declínio geral entre os Censos de 2000 e 2010, com uma continuação dessa tendência em muitos municípios até 2021, conforme dados do Cadastro Único. Isso reflete avanços importantes na educação básica dessas localidades. -->
 
-Por exemplo, Teófilo Otoni apresentou uma diminuição substancial de 18,35% em 2000 para 12,66% em 2021, evidenciando melhorias consistentes no acesso e na qualidade da educação. Araçuaí, notavelmente, reduziu sua taxa de analfabetismo de 23,66% em 2000 para 7,53% em 2021, um dos melhores desempenhos entre os municípios analisados.
+<!-- Por exemplo, Teófilo Otoni apresentou uma diminuição substancial de 18,35% em 2000 para 12,66% em 2021, evidenciando melhorias consistentes no acesso e na qualidade da educação. Araçuaí, notavelmente, reduziu sua taxa de analfabetismo de 23,66% em 2000 para 7,53% em 2021, um dos melhores desempenhos entre os municípios analisados. -->
 
-Alguns municípios, como Malacacheta e Minas Novas, ainda exibem taxas relativamente altas de analfabetismo em 2021, apesar das reduções ao longo dos anos. Isso sugere que, embora haja progresso, ainda existem desafios significativos que precisam ser abordados para alcançar uma erradicação mais completa do analfabetismo.
+<!-- Alguns municípios, como Malacacheta e Minas Novas, ainda exibem taxas relativamente altas de analfabetismo em 2021, apesar das reduções ao longo dos anos. Isso sugere que, embora haja progresso, ainda existem desafios significativos que precisam ser abordados para alcançar uma erradicação mais completa do analfabetismo. -->
 
-Em contraste, Turmalina e Medina destacam-se por suas significativas reduções na taxa de analfabetismo desde 2000, com Turmalina atingindo uma impressionante taxa de 7,27% em 2021. Esses resultados podem indicar a implementação de políticas públicas eficazes e programas focados em educação adulta e alfabetização.
+<!-- Em contraste, Turmalina e Medina destacam-se por suas significativas reduções na taxa de analfabetismo desde 2000, com Turmalina atingindo uma impressionante taxa de 7,27% em 2021. Esses resultados podem indicar a implementação de políticas públicas eficazes e programas focados em educação adulta e alfabetização. -->
 
-De modo geral, a redução das taxas de analfabetismo é um indicativo positivo de desenvolvimento social e de investimentos em educação, mas o ritmo e a extensão dessas reduções variam significativamente entre os municípios, refletindo diferenças na eficácia das políticas públicas locais e nos recursos disponíveis.
+<!-- De modo geral, a redução das taxas de analfabetismo é um indicativo positivo de desenvolvimento social e de investimentos em educação, mas o ritmo e a extensão dessas reduções variam significativamente entre os municípios, refletindo diferenças na eficácia das políticas públicas locais e nos recursos disponíveis. -->
 
-```{r,  echo=FALSE, warning=FALSE, message=FALSE}
-# Criar o data frame
-df_analfabetismo <- data.frame(
-  Municipios = c("Teófilo Otoni", "Araçuaí", "Capelinha", "Salinas", "Itaobim", "Malacacheta",
-                 "Medina", "Minas Novas", "Pedra Azul", "Turmalina", "Coronel Murta", "Itinga", 
-                 "Rubelita", "Virgem da Lapa"),
-  `Censo Demográfico 2000` = c(18.35, 23.66, 26.70, 23.85, 26.73, 31.88, 29.78, 33.53, 27.88, 22.53, 23.76, 31.02, 28.96, 27.75),
-  `Censo Demográfico 2010` = c(12.95, 17.35, 18.94, 17.28, 20.96, 25.22, 22.45, 23.00, 20.10, 14.94, 19.75, 22.18, 24.43, 22.18),
-  `CadÚnico 2014` = c(14.70, 9.31, 13.68, 10.08, 15.37, 18.17, 13.14, 21.03, 16.30, 6.74, 13.63, 12.93, 15.40, 13.04),
-  `CadÚnico 2021` = c(12.66, 7.53, 12.44, 10.50, 14.64, 17.55, 10.83, 16.32, 18.57, 7.27, 12.31, 12.11, 12.11, 9.43)
-)
+<!-- ```{r,  echo=FALSE, warning=FALSE, message=FALSE} -->
+<!-- # Criar o data frame -->
+<!-- df_analfabetismo <- data.frame( -->
+<!--   Municipios = c("Teófilo Otoni", "Araçuaí", "Capelinha", "Salinas", "Itaobim", "Malacacheta", -->
+<!--                  "Medina", "Minas Novas", "Pedra Azul", "Turmalina", "Coronel Murta", "Itinga",  -->
+<!--                  "Rubelita", "Virgem da Lapa"), -->
+<!--   `Censo Demográfico 2000` = c(18.35, 23.66, 26.70, 23.85, 26.73, 31.88, 29.78, 33.53, 27.88, 22.53, 23.76, 31.02, 28.96, 27.75), -->
+<!--   `Censo Demográfico 2010` = c(12.95, 17.35, 18.94, 17.28, 20.96, 25.22, 22.45, 23.00, 20.10, 14.94, 19.75, 22.18, 24.43, 22.18), -->
+<!--   `CadÚnico 2014` = c(14.70, 9.31, 13.68, 10.08, 15.37, 18.17, 13.14, 21.03, 16.30, 6.74, 13.63, 12.93, 15.40, 13.04), -->
+<!--   `CadÚnico 2021` = c(12.66, 7.53, 12.44, 10.50, 14.64, 17.55, 10.83, 16.32, 18.57, 7.27, 12.31, 12.11, 12.11, 9.43) -->
+<!-- ) -->
 
-# Printar o data frame
-df_analfabetismo %>%
-  gt() %>%
-  tab_header(
-    title = "Taxa de analfabetismo da população de 15 anos ou mais"
-  ) %>%
-  fmt_number(
-    columns = vars(Censo.Demográfico.2000:CadÚnico.2021),
-    decimals = 2,
-    dec_mark = ',',
-    sep_mark = '.'
-  ) %>%
-  tab_style(
-    style = cell_text(size = "smaller"),
-    locations = cells_body(columns = vars(Censo.Demográfico.2000:CadÚnico.2021))
-  ) %>%
-  tab_options(
-    data_row.padding = px(6),
-    heading.align = 'left',
-    column_labels.background.color = 'dodgerblue4',
-    heading.title.font.size = px(26)
-  ) %>%
-  tab_style(
-    style = cell_text(color = 'dodgerblue4', weight = 'bold'),
-    locations = cells_title(groups = 'title')
-  ) %>%
-  cols_label(Censo.Demográfico.2000 = 'Censo 2000',
-             Censo.Demográfico.2010 = 'Censo 2010',
-             CadÚnico.2014 = 'CadÚnico 2014',
-             CadÚnico.2021 = 'CadÚnico 2021')  %>%
-  tab_source_note(source_note = md("Fonte: IBGE/CadUnico. Elaboração: FJP/Diretoria de Estatística e Informações. "))
+<!-- # Printar o data frame -->
+<!-- df_analfabetismo %>% -->
+<!--   gt() %>% -->
+<!--   tab_header( -->
+<!--     title = "Taxa de analfabetismo da população de 15 anos ou mais" -->
+<!--   ) %>% -->
+<!--   fmt_number( -->
+<!--     columns = vars(Censo.Demográfico.2000:CadÚnico.2021), -->
+<!--     decimals = 2, -->
+<!--     dec_mark = ',', -->
+<!--     sep_mark = '.' -->
+<!--   ) %>% -->
+<!--   tab_style( -->
+<!--     style = cell_text(size = "smaller"), -->
+<!--     locations = cells_body(columns = vars(Censo.Demográfico.2000:CadÚnico.2021)) -->
+<!--   ) %>% -->
+<!--   tab_options( -->
+<!--     data_row.padding = px(6), -->
+<!--     heading.align = 'left', -->
+<!--     column_labels.background.color = 'dodgerblue4', -->
+<!--     heading.title.font.size = px(26) -->
+<!--   ) %>% -->
+<!--   tab_style( -->
+<!--     style = cell_text(color = 'dodgerblue4', weight = 'bold'), -->
+<!--     locations = cells_title(groups = 'title') -->
+<!--   ) %>% -->
+<!--   cols_label(Censo.Demográfico.2000 = 'Censo 2000', -->
+<!--              Censo.Demográfico.2010 = 'Censo 2010', -->
+<!--              CadÚnico.2014 = 'CadÚnico 2014', -->
+<!--              CadÚnico.2021 = 'CadÚnico 2021')  %>% -->
+<!--   tab_source_note(source_note = md("Fonte: IBGE/CadUnico. Elaboração: FJP/Diretoria de Estatística e Informações. ")) -->
 
 
-```
+<!-- ``` -->
 
 ## O que revelam os principais indicadores da área da educação, saúde, assistência social, segurança pública e saneamento básico?
 

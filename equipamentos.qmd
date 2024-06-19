@@ -19,7 +19,7 @@ p {
 }
 ```
 
-## Qual a situação desses municípios em termos de equipamentos de saúde e educação?
+## Qual a situação desses municípios em termos de equipamentos de saúde e educação? {#sec-qual-a-situação-desses-municípios-em-termos-de-equipamentos-de-saúde-e-educação}
 
 Usando os dados do Cadastro Nacional de Estabelecimentos de Saúde (CNES) foi possível verificar o aumento dos estabelecimentos entre os anos de 2010 e 2022. Ressalta-se que nesse total incluem-se hospitais, tanto públicos quanto privados, hospitais gerais e especializados, além de clínicas e consultórios, unidades básicas de saúde, laboratórios, entre outros.
 
@@ -327,8 +327,6 @@ top_5_cursos_por_municipio %>%
 ```
 
 Fonte: @censo2022superior. Elaboração: FJP/Diretoria de Estatística e Informações.
-
-### Aeroportos
 
 A distância dos municípios aos aeroportos mais próximos é um indicativo relevante de acessibilidade e pode ter implicações significativas para o desenvolvimento econômico e a integração regional dos municípios.
 
